@@ -1,23 +1,14 @@
 package edu.depaul.cdm.se452.group2.campusdisconnect;
-<<<<<<< HEAD
-import edu.depaul.cdm.se452.group2.campusdisconnect.professor.*;
-
-//import org.hibernate.annotations.common.util.impl.LoggerFactory;
-=======
 import edu.depaul.cdm.se452.group2.campusdisconnect.Major.MajorRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Students.*;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Major.*;
+import edu.depaul.cdm.se452.group2.campusdisconnect.professor.*;
 
->>>>>>> bc41b306f3cbc421424c6fb10e070b45c3f96912
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-<<<<<<< HEAD
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-=======
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
@@ -27,28 +18,23 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
->>>>>>> bc41b306f3cbc421424c6fb10e070b45c3f96912
 
 @SpringBootApplication
 public class CampusdisconnectApplication {
 	@Autowired
-<<<<<<< HEAD
 	ProfessorRepository repository;
 	@Autowired
 	ProfessorNoSQLRepository NoSQLrepository;
-=======
 	StudentRepository repository;
 	@Autowired
 	StudentNoSQLRepository NoSQLrepository;
 	@Autowired
 	MajorRepository majorRepository;
->>>>>>> bc41b306f3cbc421424c6fb10e070b45c3f96912
 
 	public static void main(String[] args) {
 		SpringApplication.run(CampusdisconnectApplication.class, args);
 	}
 	private static final Logger log = LoggerFactory.getLogger(CampusdisconnectApplication.class);
-<<<<<<< HEAD
 
 	@Bean
 	public CommandLineRunner addProfessor(){
@@ -107,7 +93,6 @@ public class CampusdisconnectApplication {
 	
  	}
 
-=======
 	
 
 	
@@ -187,7 +172,6 @@ public class CampusdisconnectApplication {
         };
 		
 	}
->>>>>>> bc41b306f3cbc421424c6fb10e070b45c3f96912
 
 
 }
