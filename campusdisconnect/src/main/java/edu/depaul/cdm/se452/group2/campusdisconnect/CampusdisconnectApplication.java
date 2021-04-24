@@ -1,4 +1,7 @@
 package edu.depaul.cdm.se452.group2.campusdisconnect;
+import edu.depaul.cdm.se452.group2.campusdisconnect.professor.*;
+
+//import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Major.MajorRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Students.*;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Major.*;
