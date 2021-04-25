@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("student")
 public class StudentController {
+    @Autowired
+    StudentRepository studentrepository;
+	@Autowired
+	StudentNoSQLRepository studentNoSQLrepository;
     
-    /*
-    add mapping once all persistence is complete
-    */
 
 }
