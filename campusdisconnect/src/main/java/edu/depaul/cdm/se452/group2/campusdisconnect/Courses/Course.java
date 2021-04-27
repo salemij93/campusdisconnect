@@ -35,7 +35,11 @@ public class Course implements Serializable {
     @Column(name = "deptId")    // for deptarment, is it needed though?
     private int deptId;
 
+    @Column(name = "year")
+    private int year;
 
+    @Column(name = "quarter")
+    private String quarter;
    
 
 
