@@ -16,10 +16,10 @@ public class Advisor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long advisorId;
 
-    @Column( name = "advname")
-    private String advisorName;
+    @Column( name = "advisorname")
+    private String advisorname;
 
-    @Column(name = "deptid")
-    private long departmentId;
+    @Column(name = "departmentid")
+    private int departmentid;
 
 }
