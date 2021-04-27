@@ -9,10 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class CampusdisconnectApplication {
-	@Autowired
-	ProfessorRepository repository;
-	@Autowired
-	ProfessorNoSQLRepository NoSQLrepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CampusdisconnectApplication.class, args);

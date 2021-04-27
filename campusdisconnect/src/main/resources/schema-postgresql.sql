@@ -1,20 +1,14 @@
-<<<<<<< HEAD
 DROP TABLE IF EXISTS professors;
--- DROP TABLE IF EXISTS students;
--- DROP TABLE IF EXISTS course;
--- DROP SEQUENCE IF EXISTS hibernate_sequence;
+DROP TABLE IF EXISTS student;
+DROP TABLE IF EXISTS major;
+DROP TABLE IF EXISTS course;
 
--- CREATE SEQUENCE hibernate_sequence START WITH 100 INCREMENT BY 1;
 
-CREATE TABLE professors (
+CREATE TABLE professor (
     pid NUMERIC PRIMARY KEY,
     firstName VARCHAR(50),
     lastName VARCHAR(50),
     deptId NUMERIC(2)
-=======
-
-DROP TABLE IF EXISTS student;
-DROP TABLE IF EXISTS major;
 
 CREATE TABLE student (
     studentid NUMERIC PRIMARY KEY,
@@ -29,6 +23,17 @@ CREATE TABLE major (
     majorid NUMERIC(3) PRIMARY KEY,
     majorName VARCHAR,
     departmentid NUMERIC
->>>>>>> bc41b306f3cbc421424c6fb10e070b45c3f96912
+);
+
+CREATE TABLE course (
+    courseid VARCHAR PRIMARY Key,
+    majorid NUMERIC(3),
+    pid NUMERIC,
+    StartTime VARCHAR,
+    EndTime VARCHAR,
+    credits NUMERIC,
+    deptId NUMERIC,
+    year NUMERIC(4),
+    quarter VARCHAR
 );
 
