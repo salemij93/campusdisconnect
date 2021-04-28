@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.department;
+package edu.depaul.cdm.se452.group2.campusdisconnect.Departments;
 
 import lombok.Data;
 
@@ -9,16 +9,12 @@ import java.io.Serializable;
 @Entity
 @Table
 public class Department implements Serializable {
-    private static final long serialVersionUUID= 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long deptId;
+    @Column(name = "departmentid")
+    private int departmentid;
 
-    @Column( name = "deptname")
-    private String deptName;
-
-    @Column( name = "address")
-    private String deptAddress;
+    @Column( name = "departmentname")
+    private String departmentname;
 
 }

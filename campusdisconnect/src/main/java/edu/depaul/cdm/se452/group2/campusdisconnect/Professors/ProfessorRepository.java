@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.professor;
+package edu.depaul.cdm.se452.group2.campusdisconnect.Professors;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
