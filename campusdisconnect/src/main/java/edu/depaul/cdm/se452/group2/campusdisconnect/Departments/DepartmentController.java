@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.depaul.cdm.se452.group2.campusdisconnect.Advisors.AdvisorRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Majors.Major;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Majors.MajorRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Professors.Professor;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Professors.ProfessorRepository;
 
 @RestController
 @RequestMapping("/department")
@@ -21,47 +24,54 @@ class DepartmentController {
   @Autowired
   private DepartmentRepository departmentrepository;
   @Autowired
-  private DepartmentNoSQLRepository departmentNoSQLrepository;
-  @Autowired
   private MajorRepository MajorRepository;
+  @Autowired
+  private ProfessorRepository ProfessorRepository;
  
 
   @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping("/create")
-  public Department newStudent(@RequestBody Department newDepartment) {
-      DepartmentNoSQL newDepartmentNoSQL = new DepartmentNoSQL();
-      newDepartmentNoSQL.setDepartmentid(newDepartment.getDepartmentid());
-      departmentNoSQLrepository.save(newDepartmentNoSQL);
+  public Department newDepartment(@RequestBody Department newDepartment) {
     return departmentrepository.save(newDepartment);
   }
 
   @CrossOrigin(origins = "http://localhost:8080")
-  @GetMapping("/info/{id}")
-  public Department getDeparmentInfo(@PathVariable int id) {
-    return departmentrepository.findBydepartmentid(id);
+  @GetMapping("/info/{name}")
+  public Department getDeparmentInfo(@PathVariable String name) {
+    return departmentrepository.findBydepartmentname(name);
+  }
+ 
+  @CrossOrigin(origins = "http://localhost:8080") 
+  @DeleteMapping("/deleteMajor/{name}/{majorname}")
+  public void DeleteMajor(@PathVariable String name, @PathVariable String majorname) {
+    Major majorToDelete = MajorRepository.findBymajorname(majorname);
+    majorToDelete.setDepartment(null);
+    MajorRepository.delete(majorToDelete);
   }
 
-  @CrossOrigin(origins = "http://localhost:8080")
-  @PutMapping("/update/{id}")
-  public void updateDeparmentInfo(@RequestBody Department newDepartment, @PathVariable int id) {
-    departmentrepository.save(newDepartment);
-  }   
+  @CrossOrigin(origins = "http://localhost:8080") 
+  @PutMapping("/addMajor/{name}")
+  public void addMajor(@PathVariable String name, @RequestBody Major newMajor) {
+    Department curDepartment = departmentrepository.findBydepartmentname(name);
+    curDepartment.getMajorList().add(newMajor);
+    newMajor.setDepartment(curDepartment);
+    departmentrepository.save(curDepartment);
+  }
+  @CrossOrigin(origins = "http://localhost:8080") 
+  @PutMapping("/addProfessor/{name}")
+  public void addProfessor(@PathVariable String name, @RequestBody Professor newProfessor) {
+    Department curDepartment = departmentrepository.findBydepartmentname(name);
+    curDepartment.getProfessorList().add(newProfessor);
+    departmentrepository.save(curDepartment);
+  }
+  @CrossOrigin(origins = "http://localhost:8080") 
+  @DeleteMapping("/deleteProfessor/{name}/{id}}")
+  public void DeleteProfessor(@PathVariable String name, @PathVariable long id) {
+    Professor professorToDelete = ProfessorRepository.findBypid(id);
+    professorToDelete.setDepartment(null);
+    professorToDelete.setCourselist(null);
+    ProfessorRepository.delete(professorToDelete);
+  }
 
-  @CrossOrigin(origins = "http://localhost:8080") 
-  @DeleteMapping("/deleteCourse/{id}/{mid}")
-  public void DeleteMajor(@PathVariable int id, @PathVariable int mid) {
-    departmentNoSQLrepository.findBydepartmentid(id).getMajorList().remove(mid);
-    MajorRepository.deleteBymajorid(mid);
-  }
-  @CrossOrigin(origins = "http://localhost:8080") 
-  @PostMapping("/addCourse/{id}/{mid}/{majorName}")
-  public void addMajor(@PathVariable int id, @PathVariable int mid, @PathVariable String majorName) {
-    departmentNoSQLrepository.findBydepartmentid(id).getMajorList().add(mid);
-    Major newMajor = new Major();
-    newMajor.setMajorid(mid);
-    newMajor.setDepartmentid(id);
-    newMajor.setMajorName(majorName);
-    MajorRepository.save(newMajor);
-  }
-  
+
 }

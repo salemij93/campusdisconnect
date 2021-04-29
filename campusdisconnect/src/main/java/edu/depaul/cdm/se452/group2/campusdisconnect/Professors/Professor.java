@@ -1,10 +1,20 @@
 package edu.depaul.cdm.se452.group2.campusdisconnect.Professors;
 
-import java.io.Serializable;
+import edu.*;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.Course;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Departments.Department;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.*;
@@ -23,9 +33,11 @@ public class Professor implements Serializable {
     @Column(name = "lastName")
     private String lastName;
 
-    @Column(name = "deptId")
-	private Integer deptId;
-
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Department.class)
+    private Department department;
+    
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Course.class,cascade = {CascadeType.ALL})
+    private Set<Course> courselist = new HashSet<>(); 
 	
 
 }

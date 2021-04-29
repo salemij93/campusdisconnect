@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.Course;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseNoSQL;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseNoSQLRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseRepository;
 
 @RestController
 @RequestMapping("/major")
@@ -17,19 +23,44 @@ class MajorController {
 
   @Autowired
   private MajorRepository Majorrepository;
-
+  @Autowired
+  private CourseRepository CourseRepository;
+  @Autowired
+  private CourseNoSQLRepository courseNoSQLRepository;
 
   @CrossOrigin(origins = "http://localhost:8080")
-  @GetMapping("/majorinfo/{id}")
-  public String getMajorInfo(@PathVariable int id) {
-    return Majorrepository.findBymajorid(id).toString();
+  @GetMapping("/majorinfo/{name}")
+  public String getMajorInfo(@PathVariable String name) {
+    return Majorrepository.findBymajorname(name).toString();
   }
 
   @CrossOrigin(origins = "http://localhost:8080")
-  @PutMapping("/update/{id}")
-  public void updateMajorInfo(@RequestBody Major newMajor, @PathVariable int id) {
+  @PutMapping("/update/{name}")
+  public void updateMajorInfo(@RequestBody Major newMajor, @PathVariable int name) {
     Majorrepository.save(newMajor);
   }   
 
-  
+  @CrossOrigin(origins = "http://localhost:8080") 
+  @DeleteMapping("/deleteCourse/{name}/{cid}")
+  public void DeleteCourse(@PathVariable String name, @PathVariable long cid) {
+    Course courseToDelete = CourseRepository.findBycourseid(cid);
+    courseToDelete.setMajor(null);
+    CourseRepository.delete(courseToDelete);
+    courseNoSQLRepository.deleteById(courseToDelete.getCourseid());
+  }
+
+  @CrossOrigin(origins = "http://localhost:8080") 
+  @PutMapping("/addCourse/{name}")
+  public void addCourse(@PathVariable String name, @RequestBody Course newCourse) {
+    Major curMajor = Majorrepository.findBymajorname(name);
+    CourseNoSQL courseNoSQL = new CourseNoSQL();
+    courseNoSQL.setCourseid(newCourse.getCourseid());
+    newCourse.setMajor(curMajor);
+    courseNoSQLRepository.save(courseNoSQL);
+    curMajor.getCourseList().add(newCourse);
+    Majorrepository.save(curMajor);
+    
+  }
+
+
 }

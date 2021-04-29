@@ -10,19 +10,26 @@ import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import javax.persistence.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.Course;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Departments.Department;
+
 
 @Data
 @Entity
 @Table(name = "major")
 public class Major implements Serializable {
     @Id
-    @Column(name = "majorid")
-    private int majorid;
+    @Column(name = "majorname")
+    private String majorname;
 
-    @Column(name = "majorName")
-    private String majorName;
+    @Column(name = "requiredCredit")
+    private int requiredCredit;
 
-    @Column(name = "departmentid")
-    private int departmentid;
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Department.class)
+    private Department department;
+
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Course.class,cascade = {CascadeType.ALL})
+    private List<Course> courseList = new ArrayList<>();
+
 
 }

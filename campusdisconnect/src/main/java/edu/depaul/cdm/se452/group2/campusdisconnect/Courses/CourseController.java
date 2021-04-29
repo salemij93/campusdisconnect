@@ -17,20 +17,9 @@ public class CourseController {
     @Autowired
     CourseNoSQLRepository courseNoSQLRepository;
 
-    @GetMapping
-    public void showAll() {
-        courseRepository.findAll();
-    }
 
     @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping("/create")
-    public Course newCourse(@RequestBody Course course) {
-        return courseRepository.save(course);
-    }
-
-
-    @CrossOrigin(origins = "http://localhost:8080")
-    @GetMapping("/courseinfo/{id}")
+    @GetMapping("/info/{id}")
     public String getCourseInfo(@PathVariable Long id) {
         return courseRepository.findById(id).toString();
     }
