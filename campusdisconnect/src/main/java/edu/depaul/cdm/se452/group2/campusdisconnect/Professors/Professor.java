@@ -18,7 +18,7 @@ public class Professor implements Serializable {
 	private Long pid;
     
     @Column(name = "firstName")
-    private String fistName;
+    private String firstName;
     
     @Column(name = "lastName")
     private String lastName;
