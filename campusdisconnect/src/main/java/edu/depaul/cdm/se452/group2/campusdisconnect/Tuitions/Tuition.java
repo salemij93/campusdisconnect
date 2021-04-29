@@ -17,8 +17,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Tuition implements Serializable {
 
     @Id
-    @Column(name = "majorid")
-    private int majorid;
+    @Column(name = "majorname")
+    private String majorname;
 
     @Column(name = "creditPrice")
     private int creditPrice;

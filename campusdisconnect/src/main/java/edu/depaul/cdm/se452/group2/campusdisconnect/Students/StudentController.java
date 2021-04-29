@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.Course;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseNoSQL;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseNoSQLRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Majors.Major;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Tuitions.Tuition;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Tuitions.TuitionRepository;
 
 @RestController
 @RequestMapping("/student")
@@ -25,7 +30,11 @@ class StudentController {
   @Autowired
   private StudentNoSQLRepository studentNoSQLrepository;
   @Autowired
+  private CourseRepository CourseRepository;
+  @Autowired
   private CourseNoSQLRepository CourseNoSQLRepository;
+  @Autowired
+  private TuitionRepository TuitionRepository;
 
   @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping("/create")
@@ -48,6 +57,8 @@ class StudentController {
     studentrepository.save(newStudent);
   }   
 
+
+  //dropcourse and enroll first student on waitlist
   @CrossOrigin(origins = "http://localhost:8080") 
   @DeleteMapping("/dropCourse/{id}/{cid}")
   public void dropCourse(@PathVariable Long id, @PathVariable String cid) {
@@ -75,10 +86,15 @@ class StudentController {
     studentNoSQLrepository.save(studentNoSQL);
     
   }
+
+  //addcourse
   @CrossOrigin(origins = "http://localhost:8080") 
   @PutMapping("/addCourse/{id}/{cid}")
   public void addCourse(@PathVariable Long id, @PathVariable String cid) {
     StudentNoSQL studentNoSQL = studentNoSQLrepository.findBystudentid(id);
+    if(studentNoSQL.getCurrentRegistrated().contains(cid)){
+      return;
+    }
     CourseNoSQL courseNoSQL = CourseNoSQLRepository.findBycourseid(Long.valueOf(cid));
     int EnrollmentCapacity = courseNoSQL.getEnrolledcapacity();
     if(EnrollmentCapacity > 0){
@@ -90,10 +106,14 @@ class StudentController {
     }
   }
 
+  //add to waitlist
   @CrossOrigin(origins = "http://localhost:8080") 
   @PutMapping("/waitlistCourse/{id}/{cid}")
   public String waitlistCourse(@PathVariable Long id, @PathVariable String cid) {
     StudentNoSQL studentNoSQL = studentNoSQLrepository.findBystudentid(id);
+    if(studentNoSQL.getCurrentWaitlist().contains(cid)){
+      return "already waitlisted";
+    }
     CourseNoSQL courseNoSQL = CourseNoSQLRepository.findBycourseid(Long.valueOf(cid));
     int EnrollmentCapacity = courseNoSQL.getEnrolledcapacity();
     if(EnrollmentCapacity>0) return "You can directly enroll";
@@ -109,10 +129,14 @@ class StudentController {
     return "waitlist is full, please check later";
   }
 
+  // drop from waitlist
   @CrossOrigin(origins = "http://localhost:8080") 
   @PutMapping("/unwaitlistCourse/{id}/{cid}")
   public void unwaitlistCourse(@PathVariable Long id, @PathVariable String cid) {
     StudentNoSQL studentNoSQL = studentNoSQLrepository.findBystudentid(id);
+    if(!studentNoSQL.getCurrentWaitlist().contains(cid)){
+      return;
+    }
     CourseNoSQL courseNoSQL = CourseNoSQLRepository.findBycourseid(Long.valueOf(cid));
     int WaitlistCapacity = courseNoSQL.getWaitlistCapacity();
       studentNoSQL.getCurrentWaitlist().remove(cid);
@@ -120,6 +144,23 @@ class StudentController {
       courseNoSQL.setWaitlistCapacity(WaitlistCapacity+1);
       courseNoSQL.getWaitlist().remove(id);
       CourseNoSQLRepository.save(courseNoSQL);
+  }
+
+
+  @CrossOrigin(origins = "http://localhost:8080") 
+  @GetMapping("/mytuition/{id}")
+  public int currentTuition(@PathVariable Long id) {
+    StudentNoSQL studentNoSQL = studentNoSQLrepository.findBystudentid(id);
+    int tuition = 0;
+    Set<String> currentEnroll = studentNoSQL.getCurrentRegistrated();
+    for(String cid : currentEnroll){
+      Course course = CourseRepository.findBycourseid(Long.valueOf(cid));
+      Major major = course.getMajor();
+      Tuition curtuition = TuitionRepository.findBymajorname(major.getMajorname());
+      tuition += curtuition.getCreditPrice();
+    }
+    return tuition;
+    
   }
 
 

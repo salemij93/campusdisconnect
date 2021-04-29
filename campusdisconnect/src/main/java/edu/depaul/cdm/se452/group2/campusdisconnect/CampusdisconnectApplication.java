@@ -13,6 +13,8 @@ import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Departments.Department;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Departments.DepartmentRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Professors.*;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Tuitions.Tuition;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Tuitions.TuitionRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Majors.*;
 
 
@@ -30,6 +32,9 @@ public class CampusdisconnectApplication {
 
     @Autowired
 	private CourseNoSQLRepository courseNoSQLRepository;
+	@Autowired
+	private TuitionRepository tuitionRepository;
+
 
 
 	public static void main(String[] args) {
@@ -40,6 +45,7 @@ public class CampusdisconnectApplication {
 	@Bean
 	public CommandLineRunner initiateData(){
 			return (args) -> {
+				//Insert Department
 				Department engineering = new Department();
 				engineering.setDepartmentname("Engineering");
 				departmentrepository.save(engineering);
@@ -60,7 +66,7 @@ public class CampusdisconnectApplication {
 				medical.setDepartmentname("Medical");
 				departmentrepository.save(medical);
 
-
+				//Insert Major
 				Major cs= new Major();
 				cs.setMajorname("Computer Science");
 				cs.setDepartment(engineering);
@@ -91,6 +97,7 @@ public class CampusdisconnectApplication {
 				nursing.setRequiredCredit(140);
 				MajorRepository.save(nursing);
 
+				//Insert Course
 				Course csc421 = new Course();
 				csc421.setCourseName("Algorithm");
 				csc421.setCourseid(421);
@@ -139,6 +146,35 @@ public class CampusdisconnectApplication {
 				csc432NoSQL.setWaitlistCapacity(20);
 				courseNoSQLRepository.save(csc432NoSQL);
 
+				//Insert Tuition
+				Tuition csT = new Tuition();
+				csT.setMajorname("Computer Science");
+				csT.setCreditPrice(300);
+				tuitionRepository.save(csT);
+
+				Tuition ssT = new Tuition();
+				ssT.setMajorname("Software Engineering");
+				ssT.setCreditPrice(400);
+				tuitionRepository.save(ssT);
+
+				Tuition accountingT = new Tuition();
+				accountingT.setMajorname("Accounting");
+				accountingT.setCreditPrice(200);
+				tuitionRepository.save(accountingT);
+
+				Tuition sculptureT = new Tuition();
+				sculptureT.setMajorname("Sculpture");
+				sculptureT.setCreditPrice(200);
+				tuitionRepository.save(sculptureT);
+
+				Tuition nursingT = new Tuition();
+				nursingT.setMajorname("Nursing");
+				nursingT.setCreditPrice(200);
+				tuitionRepository.save(nursingT);
+
+				
+
+				
 
 				
 
