@@ -27,8 +27,9 @@ public class CourseNoSQL implements Serializable {
 
     private int waitlistCapacity; // how many people can be on the waitlist
 
-    private Set<Long> waitlist = new HashSet<>(); // list of student ids in order who are waiting to be enrolled
-    private Set<Long> enroledlist = new HashSet<>(); //list of student ids in order who are enrolled
+    // Cannot use set here because set is not indexed.
+    private List<Long> waitlist = new ArrayList<>(); // list of student ids in order who are waiting to be enrolled
+    private List<Long> enrolledlist = new ArrayList<>(); //list of student ids in order who are enrolled
     
     
     

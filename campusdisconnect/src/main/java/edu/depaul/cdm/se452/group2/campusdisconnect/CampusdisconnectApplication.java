@@ -36,6 +36,7 @@ public class CampusdisconnectApplication {
 		SpringApplication.run(CampusdisconnectApplication.class, args);
 	}
 
+	//Don't delete, initial data!.
 	@Bean
 	public CommandLineRunner initiateData(){
 			return (args) -> {
@@ -102,6 +103,8 @@ public class CampusdisconnectApplication {
 				courseRepository.save(csc421);
 				CourseNoSQL csc421NoSQL = new CourseNoSQL();
 				csc421NoSQL.setCourseid(421);
+				csc421NoSQL.setEnrolledcapacity(40);
+				csc421NoSQL.setWaitlistCapacity(20);
 				courseNoSQLRepository.save(csc421NoSQL);
 
 				Course csc435 = new Course();
@@ -116,6 +119,8 @@ public class CampusdisconnectApplication {
 				courseRepository.save(csc435);
 				CourseNoSQL csc435NoSQL = new CourseNoSQL();
 				csc435NoSQL.setCourseid(435);
+				csc435NoSQL.setEnrolledcapacity(40);
+				csc435NoSQL.setWaitlistCapacity(20);
 				courseNoSQLRepository.save(csc435NoSQL);
 
 				Course csc432 = new Course();
@@ -130,6 +135,8 @@ public class CampusdisconnectApplication {
 				courseRepository.save(csc432);
 				CourseNoSQL csc432NoSQL = new CourseNoSQL();
 				csc432NoSQL.setCourseid(432);
+				csc432NoSQL.setEnrolledcapacity(40);
+				csc432NoSQL.setWaitlistCapacity(20);
 				courseNoSQLRepository.save(csc432NoSQL);
 
 
