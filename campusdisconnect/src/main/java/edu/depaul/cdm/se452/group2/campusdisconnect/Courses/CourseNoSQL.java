@@ -21,7 +21,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class CourseNoSQL implements Serializable {
 
     @Id
-    private String courseid; // the cousre id (key)
+    private long courseid; // the cousre id (key)
 
     private int enrolledcapacity; // how many people can enroll
 

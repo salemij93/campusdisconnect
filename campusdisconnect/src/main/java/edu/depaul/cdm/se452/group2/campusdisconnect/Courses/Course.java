@@ -15,7 +15,7 @@ public class Course implements Serializable {
 
     @Id
     @Column(name = "courseid") // for the course with quarter/year
-    private String courseid;
+    private long courseid;
 
     @Column(name = "majorid") // for the major 
     private int majorid;
@@ -23,6 +23,9 @@ public class Course implements Serializable {
     @Column(name = "pid") // for the proffesor 
     private Long pid;
 
+    @Column(name = "courseName")
+    private String courseName;
+    
     @Column(name = "StartTime") // time of class
     private String StartTime;
 
