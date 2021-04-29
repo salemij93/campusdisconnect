@@ -21,6 +21,8 @@ public class DepartmentNoSQL implements Serializable {
     private int departmentid; // the cousre id (key)
 
     private Set<Long> advisorList = new HashSet<>(); // list of advisors of the department
+
+    private Set<Integer> majorList = new HashSet<>();
     
     
 }

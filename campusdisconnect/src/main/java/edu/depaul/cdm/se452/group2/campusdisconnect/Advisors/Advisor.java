@@ -10,7 +10,6 @@ import lombok.Data;
 @Entity
 @Table
 public class Advisor implements Serializable {
-    private static final long serialVersionUUID= 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

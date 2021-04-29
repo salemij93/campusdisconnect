@@ -15,7 +15,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Entity
 @Table(name = "major")
 public class Major implements Serializable {
-
     @Id
     @Column(name = "majorid")
     private int majorid;

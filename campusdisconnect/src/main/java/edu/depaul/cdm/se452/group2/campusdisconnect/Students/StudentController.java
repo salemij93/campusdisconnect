@@ -1,7 +1,5 @@
 package edu.depaul.cdm.se452.group2.campusdisconnect.Students;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,8 +22,11 @@ class StudentController {
 
   @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping("/create")
-  public Student newStudent(@RequestBody Student newStudent) {
-    return studentrepository.save(newStudent);
+  public void newStudent(@RequestBody Student newStudent) {
+      StudentNoSQL newStudentNoSQL = new StudentNoSQL();
+      newStudentNoSQL.setStudentid(newStudent.getStudentid());
+      studentNoSQLrepository.save(newStudentNoSQL);
+      studentrepository.save(newStudent);
   }
 
   @CrossOrigin(origins = "http://localhost:8080")
@@ -51,4 +52,15 @@ class StudentController {
     studentNoSQLrepository.save(studentNoSQL);
     
   }
+  @CrossOrigin(origins = "http://localhost:8080") 
+  @PutMapping("/addCourse/{id}/{cid}")
+  public void addCourse(@PathVariable Long id, @PathVariable String cid) {
+    StudentNoSQL studentNoSQL = studentNoSQLrepository.findBystudentid(id);
+    studentNoSQL.getCurrentRegistrated().add(cid);
+    studentNoSQLrepository.save(studentNoSQL);
+  }
+
+
+  
+
 }
