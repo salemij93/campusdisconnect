@@ -1,5 +1,5 @@
 package edu.depaul.cdm.se452.group2.campusdisconnect.Courses;
-
+import edu.depaul.cdm.se452.group2.campusdisconnect.CourseComment.*;
 import java.util.*;
 import lombok.*;
 import java.io.Serializable;
@@ -44,6 +44,7 @@ public class Course implements Serializable {
     @Column(name = "quarter")
     private String quarter;
    
-
+    @OneToMany( orphanRemoval = true,cascade = {CascadeType.ALL} )
+    private List<courseComment> comments = new ArrayList<>();
 
 }
