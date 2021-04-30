@@ -30,7 +30,7 @@ public class Student implements Serializable {
     private String firstName;
 
     @Column(name = "lastName")
-    private String lasttName;
+    private String lastName;
 
     @Column(name = "address")
     private String address;
