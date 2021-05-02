@@ -20,7 +20,7 @@ import lombok.*;
 
 @Data
 @Entity
-@Table(name = "professors")
+@Table(name = "academicprogress")
 public class Professor implements Serializable {
     @Id
     @Column(name = "pid")
