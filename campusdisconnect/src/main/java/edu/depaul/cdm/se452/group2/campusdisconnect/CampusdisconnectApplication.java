@@ -35,8 +35,6 @@ public class CampusdisconnectApplication {
 	@Autowired
 	private TuitionRepository tuitionRepository;
 
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(CampusdisconnectApplication.class, args);
 	}
