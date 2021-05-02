@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 import javax.persistence.Id;
+import javax.xml.stream.events.Comment;
 
 import edu.depaul.cdm.se452.group2.campusdisconnect.Majors.Major;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Professors.Professor;

@@ -1,6 +1,5 @@
 package edu.depaul.cdm.se452.group2.campusdisconnect.Professors;
 
-import edu.*;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.Course;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Departments.Department;
 

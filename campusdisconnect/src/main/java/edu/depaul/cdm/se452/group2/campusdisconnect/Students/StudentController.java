@@ -157,11 +157,12 @@ class StudentController {
       Course course = CourseRepository.findBycourseid(Long.valueOf(cid));
       Major major = course.getMajor();
       Tuition curtuition = TuitionRepository.findBymajorname(major.getMajorname());
-      tuition += curtuition.getCreditPrice();
+      tuition += curtuition.getCreditPrice()*course.getCredits();
     }
     return tuition;
     
   }
+  
 
 
 
