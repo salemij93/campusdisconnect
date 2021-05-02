@@ -24,8 +24,4 @@ public class CourseController {
         return courseRepository.findById(id).toString();
     }
 
-
-
-
-
 }
