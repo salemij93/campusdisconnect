@@ -1,5 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.Major;
-import org.springframework.*;
+package edu.depaul.cdm.se452.group2.campusdisconnect.Tuitions;
 import java.io.Serializable;
 import java.util.*;
 import lombok.*;
@@ -13,17 +12,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Entity
-@Table(name = "major")
-public class Major implements Serializable {
+@Table(name = "tuition")
+public class Tuition implements Serializable {
 
     @Id
-    @Column(name = "majorid")
-    private int majorid;
+    @Column(name = "majorname")
+    private String majorname;
 
-    @Column(name = "majorName")
-    private String majorName;
-
-    @Column(name = "departmentid")
-    private int departmentid;
+    @Column(name = "creditPrice")
+    private int creditPrice;
 
 }

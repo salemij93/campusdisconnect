@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.professor;
+package edu.depaul.cdm.se452.group2.campusdisconnect.AcademicProgress;
 import org.springframework.*;
 import java.io.Serializable;
 import java.util.*;
@@ -13,20 +13,19 @@ import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "professorInfo")
-public class ProfessorNoSQL implements Serializable {
+@Document(collection = "academicProgress")
+
+public class AcademicProgressNoSQL implements Serializable {
 
     @Id
-    private long pid;
+    private long sid;
 
-    private Set<String> courselist = new HashSet<>(); 
+    private Set<String> completedCourseList = new HashSet<>(); 
+    private Set<String> inprogressCourseList = new HashSet<>();
     
     
     
-
-
 }
