@@ -13,32 +13,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("/professor")
-class ProfessorController {
 
   @Autowired
   private ProfessorRepository professorRepository;
   @Autowired
-  private ProfessorNoSQLRepository professorNoSQLRepository;
-
+  private CourseRepository CourseRepository;
   @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping("/create")
   public void newProfessor(@RequestBody Professor newProfessor) {
-    ProfessorNoSQL newprofessorNoSQL = new ProfessorNoSQL();
-    newprofessorNoSQL .setPid(newProfessor.getPid());
-    professorNoSQLRepository.save(newprofessorNoSQL);
     professorRepository.save(newProfessor);
   }
 
   @CrossOrigin(origins = "http://localhost:8080")
-  @GetMapping("/getprofessorinfo/{id}")
+  @GetMapping("/info/{id}")
   public String getProfessorInfo(@PathVariable Long id) {
     return professorRepository.findBypid(id).toString();
   }
 
   @CrossOrigin(origins = "http://localhost:8080")
-  @PutMapping("/updateProfessorinfo/{id}")
+  @PutMapping("/update/info/{id}")
   public void updateProfessorInfo(@RequestBody Professor newProfessor, @PathVariable Long id) {
 
     professorRepository.save(newProfessor);
@@ -46,19 +42,27 @@ class ProfessorController {
 
   @CrossOrigin(origins = "http://localhost:8080") 
   @PostMapping("/addCourse/{id}/{cid}")
-  public void addCourse(@PathVariable Long id, @PathVariable String cid) {
-    ProfessorNoSQL professorNoSQL = professorNoSQLRepository.findBypid(id);
-    professorNoSQL.getCourselist().add(cid);
-    professorNoSQLRepository.save(professorNoSQL);
-    
+  public void addCourse(@PathVariable Long id, @PathVariable long cid) {
+    Professor curProfessor = professorRepository.findBypid(id);
+    Course course = CourseRepository.findBycourseid(cid);
+    if(course.getProfessor() != null){
+      Professor previousProfessor = course.getProfessor();
+      previousProfessor.getCourselist().remove(course);
+    }
+    curProfessor.getCourselist().add(course);
+    course.setProfessor(curProfessor);
+    professorRepository.save(curProfessor);
   }
 
   @CrossOrigin(origins = "http://localhost:8080") 
   @DeleteMapping("/dropCourse/{id}/{cid}")
-  public void dropCourse(@PathVariable Long id, @PathVariable String cid) {
-    ProfessorNoSQL professorNoSQL = professorNoSQLRepository.findBypid(id);
-    professorNoSQL.getCourselist().remove(cid);
-    professorNoSQLRepository.save(professorNoSQL);
-    
+  public void dropCourse(@PathVariable Long id, @PathVariable Long cid) {
+    Professor curProfessor = professorRepository.findBypid(id);
+    Course course = CourseRepository.findBycourseid(cid);
+    if(curProfessor.getCourselist().contains(course)){
+      curProfessor.getCourselist().remove(course);
+      course.setProfessor(null);
+    }
+    professorRepository.save(curProfessor);
   }
 }

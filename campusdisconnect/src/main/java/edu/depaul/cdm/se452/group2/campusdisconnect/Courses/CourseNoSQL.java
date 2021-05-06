@@ -1,5 +1,4 @@
 package edu.depaul.cdm.se452.group2.campusdisconnect.Courses;
-import org.springframework.*;
 import java.io.Serializable;
 import java.util.*;
 import lombok.*;
@@ -21,17 +20,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class CourseNoSQL implements Serializable {
 
     @Id
-    private String courseid; // the cousre id (key)
+    private long courseid; // the cousre id (key)
 
     private int enrolledcapacity; // how many people can enroll
 
     private int waitlistCapacity; // how many people can be on the waitlist
 
-
-    private Set<Long> waitlist = new HashSet<>(); // list of student ids in order who are waiting to be enrolled
-    private Set<Long> enroledlist = new HashSet<>(); //list of student ids in order who are enrolled
-    
-    
+    private List<Long> waitlist = new ArrayList<>(); // list of student ids in order who are waiting to be enrolled
+    private List<Long> enrolledlist = new ArrayList<>(); //list of student ids in order who are enrolled
+    private List<String> comments = new ArrayList<>();
     
 
 

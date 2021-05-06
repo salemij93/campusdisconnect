@@ -1,7 +1,11 @@
 version: '3.7'
 services:
     sql:
+<<<<<<< HEAD
+        container_name: Group2Post
+=======
         container_name: Group2postgres
+>>>>>>> bc41b306f3cbc421424c6fb10e070b45c3f96912
         image: postgres
         volumes: 
             - "~/postgres/data:/var/lib/postgresql/data"
@@ -11,10 +15,18 @@ services:
         environment:
             POSTGRES_PASSWORD: password
     nosql:
+<<<<<<< HEAD
+        container_name: Group2Mongo
+=======
         container_name: Group2mongo
+>>>>>>> bc41b306f3cbc421424c6fb10e070b45c3f96912
         image: mongo
         volumes: 
             - "~/mongo/data:/data/db"
         restart: always
         ports:
+<<<<<<< HEAD
             - 27017:27017
+=======
+            - 27017:27017
+>>>>>>> bc41b306f3cbc421424c6fb10e070b45c3f96912
