@@ -7,18 +7,19 @@
 <body>    
     <h2>Login Page</h2><br>    
     <div class="login">    
-    <form id="login" method="get" action="login.php">    
+    <form id="login" method="get" th:action="@{/home}">    
         <label><b>Student Email     
         </b>    
         </label>    
-        <input type="text" name="Uname" id="Uname" placeholder="Username">    
+        <input type="text" name="username" id="Uname" placeholder="Username">    
         <br><br>    
         <label><b>Password(Student ID)     
         </b>    
+        <br></br>
         </label>    
-        <input type="Password" name="Pass" id="Pass" placeholder="Password">    
+        <input type="Password" th:name="id" th:placeholder="Password">    
         <br><br>    
-        <input type="button" name="log" id="log" value="Log In Here">       
+        <input type="submit" value = "Login Here">       
         <br><br>    
         <input type="checkbox" id="check">    
         <span>Remember me</span>    

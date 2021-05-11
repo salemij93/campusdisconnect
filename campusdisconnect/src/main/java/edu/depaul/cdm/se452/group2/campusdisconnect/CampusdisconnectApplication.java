@@ -1,11 +1,13 @@
 package edu.depaul.cdm.se452.group2.campusdisconnect;
 
+import javax.persistence.Access;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
+import org.springframework.data.repository.CrudRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.Course;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseNoSQL;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseNoSQLRepository;
@@ -13,6 +15,14 @@ import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Departments.Department;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Departments.DepartmentRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Professors.*;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Scholarship.Scholarship;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Scholarship.ScholarshipRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Students.Student;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Students.StudentNoSQL;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Students.StudentNoSQLRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Students.StudentRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Tasks.TaskNoSQL;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Tasks.TaskNoSQLRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Tuitions.Tuition;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Tuitions.TuitionRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Majors.*;
@@ -26,6 +36,12 @@ public class CampusdisconnectApplication {
   	private MajorRepository MajorRepository;
   	@Autowired
   	private ProfessorRepository ProfessorRepository;
+	@Autowired
+	private StudentRepository studentRepository;
+	@Autowired 
+	private StudentNoSQLRepository studentNoSQLRepository;
+	@Autowired
+	private ScholarshipRepository scholarshipRepository;
 
 	@Autowired
 	private CourseRepository courseRepository;
@@ -34,7 +50,9 @@ public class CampusdisconnectApplication {
 	private CourseNoSQLRepository courseNoSQLRepository;
 	@Autowired
 	private TuitionRepository tuitionRepository;
-
+	
+	@Autowired
+	private TaskNoSQLRepository taskNoSQLRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(CampusdisconnectApplication.class, args);
 	}
@@ -110,6 +128,7 @@ public class CampusdisconnectApplication {
 				csc421NoSQL.setCourseid(421);
 				csc421NoSQL.setEnrolledcapacity(40);
 				csc421NoSQL.setWaitlistCapacity(20);
+				csc421NoSQL.getEnrolledlist().add((long) 2468);
 				courseNoSQLRepository.save(csc421NoSQL);
 
 				Course csc435 = new Course();
@@ -126,6 +145,7 @@ public class CampusdisconnectApplication {
 				csc435NoSQL.setCourseid(435);
 				csc435NoSQL.setEnrolledcapacity(40);
 				csc435NoSQL.setWaitlistCapacity(20);
+				csc435NoSQL.getEnrolledlist().add((long) 2468);
 				courseNoSQLRepository.save(csc435NoSQL);
 
 				Course csc432 = new Course();
@@ -142,6 +162,7 @@ public class CampusdisconnectApplication {
 				csc432NoSQL.setCourseid(432);
 				csc432NoSQL.setEnrolledcapacity(40);
 				csc432NoSQL.setWaitlistCapacity(20);
+				csc432NoSQL.getEnrolledlist().add((long) 2468);
 				courseNoSQLRepository.save(csc432NoSQL);
 
 				//Insert Tuition
@@ -170,17 +191,70 @@ public class CampusdisconnectApplication {
 				nursingT.setCreditPrice(200);
 				tuitionRepository.save(nursingT);
 
+
+				//Insert Student
+				Student student1 = new Student();
+				StudentNoSQL student1NoSQL = new StudentNoSQL();
+				student1.setFirstName("Jack");
+				student1.setLastName("Michael");
+				student1.setMajor("Nursing");
+				student1.setStudentid(13579);
+				student1.setEmail("jackzeng@depaul.edu");
+				student1.setAddress("14 Irvine blvd,Irvine");
+				student1.setCredit(20);
+				
+
+				student1NoSQL.setStudentid(13579);
+				
+				studentRepository.save(student1);
+				studentNoSQLRepository.save(student1NoSQL);
+
+
+				Student student2 = new Student();
+				StudentNoSQL student2NoSQL = new StudentNoSQL();
+				student2NoSQL.setStudentid(2468);
+				student2.setFirstName("Joe");
+				student2.setLastName("May");
+				student2.setMajor("Computer Science");
+				student2.setStudentid(2468);
+				student2.setEmail("joemay@depaul.edu");
+				student2.setAddress("17 Montain blvd,Sacramento");
+				student2.setCredit(90);
+
+				student2NoSQL.getCurrentRegistrated().add("432");
+				student2NoSQL.getCurrentRegistrated().add("435");
+				student2NoSQL.getCurrentRegistrated().add("421");
+				studentRepository.save(student2);
+				studentNoSQLRepository.save(student2NoSQL);
+
+				Student student3 = new Student();
+				Student student4 = new Student();
+				Student student5 = new Student();
+				
+				TaskNoSQL task1NoSQL = new TaskNoSQL();
+				task1NoSQL.setSid(2468);
+				task1NoSQL.setTaskid(9);
+				task1NoSQL.getTaskList().add("Pay tuition");
+				task1NoSQL.getTaskList().add("Pay more");
+				taskNoSQLRepository.save(task1NoSQL);
+
+
+				TaskNoSQL task2NoSQL = new TaskNoSQL();
+				task2NoSQL.setSid(13579);
+				task2NoSQL.getTaskList().add("Register class");
+				taskNoSQLRepository.save(task2NoSQL);
+
+				// insert ScholarShip
+				Scholarship scholarship = new Scholarship();
+				scholarship.setStudentId(2468);
+				scholarship.setScholarshipAmount(1000);
+				scholarshipRepository.save(scholarship);
+			
 				
 
 				
 
-				
-
-
-
-
-
-
+	
 						
 
 

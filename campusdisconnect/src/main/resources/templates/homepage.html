@@ -2,15 +2,81 @@
 <html xmlns="=http://thymeleaf.org">
 
 
+
 <head>
     <h1>My Home Page</h1>
-    <link rel="stylesheet" type="text/css"href="homepage.css">
 </head>
 <body>
-    <input type="button" name="StudentProfile" id="StudentProfile" value="Student Profile">
-    <input type="button" name="StudentAccount" id="StudentAccount" value="Student Account">
+    
+    <label>Student ID:</label>
+    <label id = "id" ></label>
+    <br></br>
+    <script type="text/javascript">
+        function processUser()
+        {
+          var parameters = location.search.substring(1).split("&");
+            
+          var temp = parameters[1].split("=");
+          var l = unescape(temp[1]);
+          document.getElementById('id').innerHTML = l;
+        }
+        processUser()
+     </script>
+    <form th:action="@{/student/info}" method="get">
+        <input type = "hidden" id = "cur" th:name = "id">
+        <script type="text/javascript">
+            function processUser()
+            {
+              var parameters = location.search.substring(1).split("&");
+              console.log(parameters);
+                
+              var temp = parameters[1].split("=");
+              console.log(temp);
+              var l = unescape(temp[1]);
+              document.getElementById('cur').value = parseInt(l);
+            }
+            processUser()
+         </script>
+        <input type="submit" value="Student Profile">
+    </form>
+    <br></br>
     <input type="button" name="ClassManagement" id = "ClassManagement"value="Manage Class">
-    <input type="button" name="MyTask" id = "MyTask"value="My Task">
+    <br></br>
+    <form th:action="@{/student/mytuition}" method="get">
+      <input type = "hidden" id = "curr" th:name = "id">
+      <script type="text/javascript">
+          function processUser()
+          {
+            var parameters = location.search.substring(1).split("&");
+              
+            var temp = parameters[1].split("=");
+            var l = unescape(temp[1]);
+            document.getElementById('curr').value = parseInt(l);
+          }
+          processUser()
+       </script>
+      <input type="submit" value="My Tuition">
+  </form>
+    <br></br>
+
+    <form th:action="@{/task/getTaskinfo}" method="get">
+        <input type = "hidden" id = "temp" th:name = "id">
+        <script type="text/javascript">
+            function processUser()
+            {
+              var parameters = location.search.substring(1).split("&");
+                
+              var temp = parameters[1].split("=");
+              var l = unescape(temp[1]);
+              document.getElementById('temp').value = parseInt(l);
+            }
+            processUser()
+         </script>
+        <input type="submit" value="My Task">
+    </form>
+    
+    
+    
 </body>
 
 

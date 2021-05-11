@@ -10,20 +10,30 @@
 <TABLE BORDER="4"    WIDTH="50%"   CELLPADDING="3" CELLSPACING="2">
     <TR>
        <TH COLSPAN="3"><BR><H3>Account Summary</H3>
-        <h4>Student ID:</h4>
-        
        </TH>
     </TR>
     <TR>
        <TH>Account Balance</TH>
-       <TH>Anticipated Financial Aid</TH>
+       <TH>Scholarship</TH>
        <TH>Remaining Balance</TH>
        
     </TR>
     <TR ALIGN="CENTER">
-       <TD>Data 1</TD>
-       <TD>Data 2</TD>
-       <TD>Data 3</TD>
+       <TD id = "tui" th:text = ${tuition}></TD>
+       <TD id = "scho" th:text = ${scholarship}></TD>
+       <TD id = "total"></TD>
+       <script type="text/javascript">
+         function calc()
+         {
+           var tuition = document.getElementById('tui').textContent;
+           var scholarship = document.getElementById('scho').textContent;
+           document.getElementById('total').innerHTML = tuition - scholarship;
+         }
+         calc()
+      </script>
+
+       
+       
     </TR>
  </TABLE>
 </body>

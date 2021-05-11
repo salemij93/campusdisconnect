@@ -3,6 +3,8 @@ package edu.depaul.cdm.se452.group2.campusdisconnect.Tasks;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,12 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@RestController
+@Controller
 @RequestMapping("/task")
-
 public class TaskController {
     @Autowired
     private TaskNoSQLRepository taskNoSQLRepository;
@@ -29,10 +32,12 @@ public class TaskController {
   
     }
   
-    @CrossOrigin(origins = "http://localhost:8080")
-    @GetMapping("/getTaskinfo/{id}")
-    public String getTaskInfo(@PathVariable Long id) {
-      return taskNoSQLRepository.findBysid(id).toString();
+    //@CrossOrigin(origins = "http://localhost:8080")
+    @GetMapping("/getTaskinfo")
+    public String getTaskInfo(@RequestParam Long id, Model model) {
+      TaskNoSQL task = taskNoSQLRepository.findBysid(id);
+      model.addAttribute("task", task);
+      return "mytask";
     }
   
     @CrossOrigin(origins = "http://localhost:8080")

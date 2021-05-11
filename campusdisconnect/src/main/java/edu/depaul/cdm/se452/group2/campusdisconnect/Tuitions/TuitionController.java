@@ -2,9 +2,11 @@ package edu.depaul.cdm.se452.group2.campusdisconnect.Tuitions;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/tuition")
 public class TuitionController {
 
@@ -13,8 +15,9 @@ public class TuitionController {
 
     @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/info")
-    public String getAllTuition() {
-        return tuitionRepository.findAll().toString();
+    public String getAllTuition(@RequestParam Long id, Model model) {
+
+        return "studentaccount";
     }
 
     @CrossOrigin(origins = "http://localhost:8080")

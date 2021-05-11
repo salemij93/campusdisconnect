@@ -24,7 +24,6 @@ public class TaskNoSQL implements Serializable{
     private long sid;
 
     private long taskid;
-
-    private Set<String> taskList = new HashSet<>(); 
+     private Set<String> taskList = new HashSet<>(); 
     
 }

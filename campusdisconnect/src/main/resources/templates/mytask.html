@@ -4,23 +4,34 @@
 
 <head>
     <h1>My Task</h1>
-    <link rel="stylesheet" type="text/css"href="homepage.css">
 </head>
 <body>
 <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+   <label>Student ID:</label>
+   <label id = "id" ></label>
+   <script type="text/javascript">
+       function processUser()
+       {
+         var parameters = location.search.substring(1).split("&");
+         var temp = parameters[0].split("=");
+         var l = unescape(temp[1]);
+         document.getElementById('id').innerHTML = l;
+         console.log(l);
+       }
+       processUser()
+    </script>
     <TR>
-       <TH COLSPAN="3"><BR><H3>ToDo List</H3>
+       <TH COLSPAN="2"><BR><H3>ToDo List</H3>
        </TH>
     </TR>
     <TR>
        <TH>TaskID</TH>
        <TH>Description</TH>
-       <TH>Status</TH>
     </TR>
-    <TR ALIGN="CENTER">
-       <TD>Data 1</TD>
-       <TD>Data 2</TD>
-       <TD>Data 3</TD>
+    <TR ALIGN="CENTER" th:each="t, iter : ${task.taskList}">
+       <TD th:text = ${iter.index+1}></TD>
+       <TD th:text="${t}"></TD>
+       
     </TR>
  </TABLE>
 </body>

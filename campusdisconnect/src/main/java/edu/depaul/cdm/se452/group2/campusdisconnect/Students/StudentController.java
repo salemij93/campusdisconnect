@@ -3,6 +3,8 @@ package edu.depaul.cdm.se452.group2.campusdisconnect.Students;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,17 +13,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.Course;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseNoSQL;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseNoSQLRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Majors.Major;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Scholarship.ScholarshipRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Tuitions.Tuition;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Tuitions.TuitionRepository;
 
-@RestController
+@Controller
 @RequestMapping("/student")
 class StudentController {
 
@@ -35,6 +39,8 @@ class StudentController {
   private CourseNoSQLRepository CourseNoSQLRepository;
   @Autowired
   private TuitionRepository TuitionRepository;
+  @Autowired
+  private ScholarshipRepository scholarshipRepository;
 
   @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping("/create")
@@ -46,8 +52,8 @@ class StudentController {
   }
 
   @CrossOrigin(origins = "http://localhost:8080")
-  @GetMapping("/info/{id}")
-  public String getStudentInfo(@PathVariable Long id) {
+  @GetMapping("/info")
+  public String getStudentInfo(@RequestParam Long id) {
     return studentrepository.findBystudentid(id).toString();
   }
 
@@ -148,10 +154,11 @@ class StudentController {
 
 
   @CrossOrigin(origins = "http://localhost:8080") 
-  @GetMapping("/mytuition/{id}")
-  public int currentTuition(@PathVariable Long id) {
+  @GetMapping("/mytuition")
+  public String currentTuition(@RequestParam Long id, Model model) {
     StudentNoSQL studentNoSQL = studentNoSQLrepository.findBystudentid(id);
     int tuition = 0;
+    int scholarship = scholarshipRepository.findBystudentId(id).getScholarshipAmount();
     Set<String> currentEnroll = studentNoSQL.getCurrentRegistrated();
     for(String cid : currentEnroll){
       Course course = CourseRepository.findBycourseid(Long.valueOf(cid));
@@ -159,9 +166,13 @@ class StudentController {
       Tuition curtuition = TuitionRepository.findBymajorname(major.getMajorname());
       tuition += curtuition.getCreditPrice()*course.getCredits();
     }
-    return tuition;
+    model.addAttribute("scholarship", scholarship);
+    model.addAttribute("tuition", tuition);
+    return "studentaccount";
     
   }
+  
+
   
 
 
