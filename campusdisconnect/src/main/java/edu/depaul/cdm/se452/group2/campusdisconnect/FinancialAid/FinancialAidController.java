@@ -1,7 +1,6 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.FinancialAid;
+package edu.depaul.cdm.se452.group2.campusdisconnect.financialAid;
 
 
-import edu.depaul.cdm.se452.group2.campusdisconnect.Scholarship.ScholarshipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.Professors;
+package edu.depaul.cdm.se452.group2.campusdisconnect.professors;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.Course;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.courses.Course;
+import edu.depaul.cdm.se452.group2.campusdisconnect.courses.CourseRepository;
 
 @RestController
 @RequestMapping("/professor")

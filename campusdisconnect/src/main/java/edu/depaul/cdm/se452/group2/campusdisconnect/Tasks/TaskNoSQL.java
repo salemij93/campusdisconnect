@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.Tasks;
+package edu.depaul.cdm.se452.group2.campusdisconnect.tasks;
 
 
 import java.io.Serializable;

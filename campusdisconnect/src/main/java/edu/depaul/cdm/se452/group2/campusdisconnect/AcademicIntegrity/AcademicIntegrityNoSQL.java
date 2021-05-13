@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.AcademicIntegrity;
+package edu.depaul.cdm.se452.group2.campusdisconnect.academicIntegrity;
 
 
 import java.io.Serializable;

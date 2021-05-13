@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.Courses;
+package edu.depaul.cdm.se452.group2.campusdisconnect.courses;
 import java.io.Serializable;
 import java.util.*;
 import lombok.*;

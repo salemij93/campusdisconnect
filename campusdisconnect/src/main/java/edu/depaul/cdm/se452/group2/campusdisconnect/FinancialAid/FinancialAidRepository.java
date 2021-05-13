@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.FinancialAid;
+package edu.depaul.cdm.se452.group2.campusdisconnect.financialAid;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

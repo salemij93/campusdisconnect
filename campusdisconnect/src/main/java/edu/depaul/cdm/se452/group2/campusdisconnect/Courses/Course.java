@@ -1,15 +1,14 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.Courses;
-import edu.depaul.cdm.se452.group2.campusdisconnect.CourseComment.*;
+package edu.depaul.cdm.se452.group2.campusdisconnect.courses;
+import edu.depaul.cdm.se452.group2.campusdisconnect.courseComment.*;
 import java.util.*;
 import lombok.*;
 import java.io.Serializable;
 
 import javax.persistence.*;
 import javax.persistence.Id;
-import javax.xml.stream.events.Comment;
 
-import edu.depaul.cdm.se452.group2.campusdisconnect.Majors.Major;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Professors.Professor;
+import edu.depaul.cdm.se452.group2.campusdisconnect.majors.Major;
+import edu.depaul.cdm.se452.group2.campusdisconnect.professors.Professor;
 
 
 @Data
