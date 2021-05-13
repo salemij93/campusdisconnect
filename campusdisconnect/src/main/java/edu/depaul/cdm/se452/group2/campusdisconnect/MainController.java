@@ -1,16 +1,19 @@
 package edu.depaul.cdm.se452.group2.campusdisconnect;
 
+import edu.depaul.cdm.se452.group2.campusdisconnect.Students.Student;
+import edu.depaul.cdm.se452.group2.campusdisconnect.Students.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-
-import org.springframework.web.bind.annotation.GetMapping;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/")
 class LoginController {
+
+  @Autowired
+  private StudentRepository studentrepository;
+
   @CrossOrigin(origins = "http://localhost:8080")
   @GetMapping("/")
   public String Login() {
@@ -31,6 +34,17 @@ class LoginController {
       return "studentaccount";
   }
   
-  
+  @GetMapping(params = "edit")
+  public String getStudentRegistrationPage(Model model) {
+    model.addAttribute("student", new Student());
+    return "registration";
+  }
+
+  @PostMapping("/")
+  public String registrationSubmit(@ModelAttribute Student student) {
+    studentrepository.save(student);
+    return "homepage";
+  }
+
 
 }
