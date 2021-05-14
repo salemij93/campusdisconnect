@@ -53,8 +53,11 @@ class StudentController {
 
   @CrossOrigin(origins = "http://localhost:8080")
   @GetMapping("/info")
-  public String getStudentInfo(@RequestParam Long id) {
-    return studentrepository.findBystudentid(id).toString();
+  public String getStudentInfo(@RequestParam Long id, Model model) {
+    Student student = studentrepository.findBystudentid(id);
+    model.addAttribute("studentid", student.getStudentid());
+    
+    return "student-profile";
   }
 
   @CrossOrigin(origins = "http://localhost:8080")
