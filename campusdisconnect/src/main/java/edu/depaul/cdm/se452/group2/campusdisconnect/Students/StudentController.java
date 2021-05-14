@@ -55,8 +55,15 @@ class StudentController {
   @GetMapping("/info")
   public String getStudentInfo(@RequestParam Long id, Model model) {
     Student student = studentrepository.findBystudentid(id);
-    model.addAttribute("studentid", student.getStudentid());
     
+    model.addAttribute("studentid", student.getStudentid());
+    model.addAttribute("firstname", student.getFirstName());
+    model.addAttribute("lastname", student.getLastName());
+    model.addAttribute("email", student.getEmail());
+    model.addAttribute("major", student.getMajor());
+    model.addAttribute("address", student.getAddress());
+    model.addAttribute("credits", student.getCredit());
+    // model.addAttribute("integrity",)
     return "student-profile";
   }
 
