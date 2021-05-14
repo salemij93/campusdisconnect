@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import edu.depaul.cdm.se452.group2.campusdisconnect.AcademicIntegrity.AcademicIntegrityNoSQL;
+import edu.depaul.cdm.se452.group2.campusdisconnect.AcademicIntegrity.AcademicIntegrityNoSQLrepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.Course;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseNoSQL;
 import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseNoSQLRepository;
@@ -41,6 +42,8 @@ class StudentController {
   private TuitionRepository TuitionRepository;
   @Autowired
   private ScholarshipRepository scholarshipRepository;
+  @Autowired
+   private AcademicIntegrityNoSQLrepository academicIntegrityNoSQLrepository;
 
   @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping("/create")
@@ -55,7 +58,12 @@ class StudentController {
   @GetMapping("/info")
   public String getStudentInfo(@RequestParam Long id, Model model) {
     Student student = studentrepository.findBystudentid(id);
-    
+    // AcademicIntegrityNoSQL studentIntegrity = academicIntegrityNoSQLrepository.findBysid(id);
+    // Set<String> violationListSet = studentIntegrity.getViloationList();
+    int violation = 0;
+    // if(violationListSet.size()>0){
+    //   violation = violationListSet.size();
+    // }
     model.addAttribute("studentid", student.getStudentid());
     model.addAttribute("firstname", student.getFirstName());
     model.addAttribute("lastname", student.getLastName());
@@ -63,7 +71,8 @@ class StudentController {
     model.addAttribute("major", student.getMajor());
     model.addAttribute("address", student.getAddress());
     model.addAttribute("credits", student.getCredit());
-    // model.addAttribute("integrity",)
+    model.addAttribute("violations", violation);
+    
     return "student-profile";
   }
 
