@@ -1,7 +1,7 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.Professors;
+package edu.depaul.cdm.se452.group2.campusdisconnect.professors;
 
-import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.Course;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Departments.Department;
+import edu.depaul.cdm.se452.group2.campusdisconnect.courses.Course;
+import edu.depaul.cdm.se452.group2.campusdisconnect.departments.Department;
 
 import java.io.Serializable;
 import java.util.HashSet;

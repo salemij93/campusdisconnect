@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.AcademicProgress;
+package edu.depaul.cdm.se452.group2.campusdisconnect.academicProgress;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

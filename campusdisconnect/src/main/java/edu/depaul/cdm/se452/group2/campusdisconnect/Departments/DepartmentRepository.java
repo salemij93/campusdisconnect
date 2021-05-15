@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.Departments;
+package edu.depaul.cdm.se452.group2.campusdisconnect.departments;
 
 import org.springframework.data.repository.CrudRepository;
 
