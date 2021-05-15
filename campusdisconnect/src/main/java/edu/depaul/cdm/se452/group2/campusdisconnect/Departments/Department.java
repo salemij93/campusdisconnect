@@ -1,7 +1,7 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.Departments;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Advisors.Advisor;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Majors.*;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Professors.*;
+package edu.depaul.cdm.se452.group2.campusdisconnect.departments;
+import edu.depaul.cdm.se452.group2.campusdisconnect.advisors.Advisor;
+import edu.depaul.cdm.se452.group2.campusdisconnect.majors.*;
+import edu.depaul.cdm.se452.group2.campusdisconnect.professors.*;
 import lombok.Data;
 
 import javax.persistence.*;

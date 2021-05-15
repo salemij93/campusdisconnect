@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.Departments;
+package edu.depaul.cdm.se452.group2.campusdisconnect.departments;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.depaul.cdm.se452.group2.campusdisconnect.Advisors.AdvisorRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Majors.Major;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Majors.MajorRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Professors.Professor;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Professors.ProfessorRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.advisors.AdvisorRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.majors.Major;
+import edu.depaul.cdm.se452.group2.campusdisconnect.majors.MajorRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.professors.Professor;
+import edu.depaul.cdm.se452.group2.campusdisconnect.professors.ProfessorRepository;
 
 @RestController
 @RequestMapping("/department")

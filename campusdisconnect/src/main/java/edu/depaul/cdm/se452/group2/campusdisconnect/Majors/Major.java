@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.Majors;
+package edu.depaul.cdm.se452.group2.campusdisconnect.majors;
 import java.io.Serializable;
 import java.util.*;
 import lombok.*;
@@ -9,8 +9,8 @@ import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import javax.persistence.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.Course;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Departments.Department;
+import edu.depaul.cdm.se452.group2.campusdisconnect.courses.Course;
+import edu.depaul.cdm.se452.group2.campusdisconnect.departments.Department;
 
 
 @Data

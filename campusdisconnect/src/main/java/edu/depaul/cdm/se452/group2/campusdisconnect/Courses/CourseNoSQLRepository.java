@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.Courses;
+package edu.depaul.cdm.se452.group2.campusdisconnect.courses;
 
 
 import org.springframework.data.mongodb.repository.MongoRepository;

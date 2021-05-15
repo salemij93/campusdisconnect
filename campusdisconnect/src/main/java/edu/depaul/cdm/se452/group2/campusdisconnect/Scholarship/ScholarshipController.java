@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.Scholarship;
+package edu.depaul.cdm.se452.group2.campusdisconnect.scholarship;
 
 
 import javax.websocket.server.PathParam;

@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.Students;
+package edu.depaul.cdm.se452.group2.campusdisconnect.students;
 
 import java.util.*;
 
@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.Course;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseNoSQL;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseNoSQLRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Courses.CourseRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Majors.Major;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Scholarship.ScholarshipRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Tuitions.Tuition;
-import edu.depaul.cdm.se452.group2.campusdisconnect.Tuitions.TuitionRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.courses.Course;
+import edu.depaul.cdm.se452.group2.campusdisconnect.courses.CourseNoSQL;
+import edu.depaul.cdm.se452.group2.campusdisconnect.courses.CourseNoSQLRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.courses.CourseRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.majors.Major;
+import edu.depaul.cdm.se452.group2.campusdisconnect.scholarship.ScholarshipRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.tuitions.Tuition;
+import edu.depaul.cdm.se452.group2.campusdisconnect.tuitions.TuitionRepository;
 
 @Controller
 @RequestMapping("/student")
