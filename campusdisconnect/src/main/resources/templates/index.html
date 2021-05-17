@@ -1,5 +1,5 @@
-<!DOCTYPE html>    
-<html xmlns="=http://thymeleaf.org">    
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>    
     <title>Login Page</title>    
     <link rel="stylesheet" type="text/css" href="login.css">    
@@ -23,8 +23,8 @@
         <br><br>    
         <input type="checkbox" id="check">    
         <span>Remember me</span>    
-        <br><br>      
-        <input type="button" name="Register" id="Register" value="Click to Register">       
+        <br><br>
+        <a class="btn button1" th:href="@{/(edit)}"> Register </a>
         <br><br>     
           
     </form>     

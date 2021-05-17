@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+        <title>Student Profile</title>
+    </head>
+ 
+    <body>
+        
+        <div class="alert alert-info" role="alert">
+            <h1>Student Profile</h1> 
+        </div>
+        <div class="container">
+            <div class="row justify-content-start gy-2">
+                <div class="col-3">
+                 Student Id 
+                </div>
+                <div class="col-3" th:text = ${studentid}>
+                  
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+
+            <div class="row justify-content-start gy-2">
+                <div class="col-3">
+                 First Name
+                </div>
+                <div class="col-3" th:text = ${firstname}>
+                  
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-outline-info">Edit</button>
+                </div>
+            </div>
+
+            <div class="row justify-content-start gy-2">
+                <div class="col-3">
+                 Last Name 
+                </div>
+                <div class="col-3" th:text = ${lastname}>
+                  
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-outline-info">Edit</button>
+                </div>
+            </div>
+
+            <div class="row justify-content-start gy-2">
+                <div class="col-3">
+                 Email 
+                </div>
+                <div class="col-3" th:text = ${email}>
+                  
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+
+            <div class="row justify-content-start gy-2">
+                <div class="col-3">
+                 Major 
+                </div>
+                <div class="col-3" th:text = ${major}>
+                  
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+
+            <div class="row justify-content-start ">
+                <div class="col-3">
+                 Address
+                </div>
+                <div class="col-3" th:text = ${address}>
+                  
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-outline-info">Edit</button>
+                </div>
+            </div>
+
+            <div class="row justify-content-start">
+                <div class="col-3">
+                 Credits 
+                </div>
+                <div class="col-3" th:text = ${credits}>
+                  
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+
+            <div class="row justify-content-start">
+                <div class="col-3">
+                 Acedemic Integrity Record
+                </div>
+                <div class="col-3" th:text = ${violations}>
+                  
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+
+            <div class="row justify-content-start">
+                <div class="col-3">
+                 
+                </div>
+                <div class="col-3">
+                  
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-outline-success">Save</button>
+                </div>
+            </div>
+
+            
+        </div>
+
+        
+        
+    </body>
+
+
+</html>
