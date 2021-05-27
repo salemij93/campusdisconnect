@@ -34,7 +34,7 @@ public class commentController {
 
     @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("/create")
-    public void newCourse(@RequestBody courseComment comment) {
+    public void newCourse(@RequestBody CourseComment comment) {
 
         commentNoSQL newcommentNoSQL = new commentNoSQL();
         newcommentNoSQL.setCommentid(comment.getCommentid());

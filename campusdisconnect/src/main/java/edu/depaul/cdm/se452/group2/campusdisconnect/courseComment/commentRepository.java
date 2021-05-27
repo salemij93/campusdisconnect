@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface commentRepository extends JpaRepository<courseComment, Long> {
-    public courseComment findBycommentid(long commentid);
+public interface commentRepository extends JpaRepository<CourseComment, Long> {
+    public CourseComment findBycommentid(long commentid);
  
 }

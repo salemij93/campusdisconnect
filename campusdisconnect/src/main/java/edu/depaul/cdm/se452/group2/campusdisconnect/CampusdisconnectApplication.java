@@ -53,6 +53,7 @@ public class CampusdisconnectApplication {
 	
 	@Autowired
 	private TaskNoSQLRepository taskNoSQLRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(CampusdisconnectApplication.class, args);
 	}

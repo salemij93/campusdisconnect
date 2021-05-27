@@ -10,7 +10,7 @@ import javax.persistence.Id;
 @Data
 @Entity
 @Table(name = "courseComment")
-public class courseComment implements Serializable{
+public class CourseComment implements Serializable{
  
     @Id
     @Column(name = "commentid") 
