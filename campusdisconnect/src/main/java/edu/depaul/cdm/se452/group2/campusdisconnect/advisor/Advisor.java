@@ -14,10 +14,8 @@ public class Advisor implements Serializable {
     private static final long serialVersionUUID= 1L;
 
     @Id
-    @Column(name = "advisorId")
     private long advisorId;
 
-    @Column( name = "advisorname")
     private String advisorname;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Department.class)

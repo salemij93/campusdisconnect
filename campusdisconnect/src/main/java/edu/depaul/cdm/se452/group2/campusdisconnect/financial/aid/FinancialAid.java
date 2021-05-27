@@ -13,7 +13,6 @@ public class FinancialAid implements Serializable {
     private static final long serialVersionUUID= 1L;
 
     @Id
-    @Column(name = "financialaidId")
     private long financialaidid;
 
     @Column( name = "aid_name")

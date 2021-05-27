@@ -8,14 +8,11 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-@Table(name = "tuition")
 public class Tuition implements Serializable {
 
     @Id
-    @Column(name = "majorname")
     private String majorname;
 
-    @Column(name = "creditPrice")
     private int creditPrice;
 
 }
