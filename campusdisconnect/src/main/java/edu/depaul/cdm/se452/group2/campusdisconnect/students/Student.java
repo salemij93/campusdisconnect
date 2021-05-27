@@ -12,16 +12,22 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Entity
-
 public class Student implements Serializable {
 
     @Id
     private long studentid;
+
     private String major;
+
     private String email;
+
+
     private String firstName;
+
     private String lastName;
+
     private String address;
+
     private int credit;
 
    

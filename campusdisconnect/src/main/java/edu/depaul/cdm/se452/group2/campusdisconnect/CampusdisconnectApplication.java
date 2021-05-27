@@ -250,6 +250,8 @@ public class CampusdisconnectApplication {
 				scholarship.setStudentId(2468);
 				scholarship.setScholarshipAmount(1000);
 				scholarshipRepository.save(scholarship);
+				
+				
 			
 				
 

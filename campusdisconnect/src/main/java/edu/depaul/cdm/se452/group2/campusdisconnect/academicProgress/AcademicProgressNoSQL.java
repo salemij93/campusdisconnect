@@ -16,7 +16,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "academicProgress")
-
 public class AcademicProgressNoSQL implements Serializable {
 
     @Id

@@ -16,7 +16,6 @@ public class Tuition implements Serializable {
 
     @Id
     private String majorname;
-
     private int creditPrice;
 
 }

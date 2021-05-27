@@ -23,7 +23,9 @@ import lombok.*;
 public class Professor implements Serializable {
     @Id
 	private Long pid;
+    
     private String firstName;
+    
     private String lastName;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Department.class)

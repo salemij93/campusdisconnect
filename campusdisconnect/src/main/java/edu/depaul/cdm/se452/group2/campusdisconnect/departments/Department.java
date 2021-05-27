@@ -10,7 +10,6 @@ import java.util.*;
 
 @Data
 @Entity
-
 public class Department implements Serializable {
 
     @Id
