@@ -1,31 +1,28 @@
 package edu.depaul.cdm.se452.group2.campusdisconnect;
 
-import javax.persistence.Access;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.repository.CrudRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.courses.Course;
-import edu.depaul.cdm.se452.group2.campusdisconnect.courses.CourseNoSQL;
-import edu.depaul.cdm.se452.group2.campusdisconnect.courses.CourseNoSQLRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.courses.CourseRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.departments.Department;
-import edu.depaul.cdm.se452.group2.campusdisconnect.departments.DepartmentRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.professors.*;
+import edu.depaul.cdm.se452.group2.campusdisconnect.course.Course;
+import edu.depaul.cdm.se452.group2.campusdisconnect.course.CourseNoSQL;
+import edu.depaul.cdm.se452.group2.campusdisconnect.course.CourseNoSQLRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.course.CourseRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.department.Department;
+import edu.depaul.cdm.se452.group2.campusdisconnect.department.DepartmentRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.professor.*;
 import edu.depaul.cdm.se452.group2.campusdisconnect.scholarship.Scholarship;
 import edu.depaul.cdm.se452.group2.campusdisconnect.scholarship.ScholarshipRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.students.Student;
-import edu.depaul.cdm.se452.group2.campusdisconnect.students.StudentNoSQL;
-import edu.depaul.cdm.se452.group2.campusdisconnect.students.StudentNoSQLRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.students.StudentRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.tasks.TaskNoSQL;
-import edu.depaul.cdm.se452.group2.campusdisconnect.tasks.TaskNoSQLRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.tuitions.Tuition;
-import edu.depaul.cdm.se452.group2.campusdisconnect.tuitions.TuitionRepository;
-import edu.depaul.cdm.se452.group2.campusdisconnect.majors.*;
+import edu.depaul.cdm.se452.group2.campusdisconnect.student.Student;
+import edu.depaul.cdm.se452.group2.campusdisconnect.student.StudentNoSQL;
+import edu.depaul.cdm.se452.group2.campusdisconnect.student.StudentNoSQLRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.student.StudentRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.task.TaskNoSQL;
+import edu.depaul.cdm.se452.group2.campusdisconnect.task.TaskNoSQLRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.tuition.Tuition;
+import edu.depaul.cdm.se452.group2.campusdisconnect.tuition.TuitionRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.major.*;
 
 
 @SpringBootApplication
