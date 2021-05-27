@@ -10,11 +10,9 @@ import java.util.*;
 
 @Data
 @Entity
-@Table
 public class Department implements Serializable {
 
     @Id
-    @Column( name = "departmentname")
     private String departmentname;
 
     @OneToMany(mappedBy = "department", targetEntity = Major.class, cascade = {CascadeType.ALL})

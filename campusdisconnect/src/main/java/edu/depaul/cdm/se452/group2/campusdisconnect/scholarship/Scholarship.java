@@ -13,7 +13,6 @@ public class Scholarship implements Serializable {
     
 
     @Id
-    @Column (name = "student_id")
     private long studentId;
 
     @Column( name = "scholarship_amount")

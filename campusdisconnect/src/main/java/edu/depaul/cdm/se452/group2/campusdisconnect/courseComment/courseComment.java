@@ -5,18 +5,14 @@ import lombok.*;
 import java.io.Serializable;
 
 import javax.persistence.*;
-import javax.persistence.Id;
+import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "courseComment")
-public class courseComment implements Serializable{
+public class CourseComment implements Serializable{
  
-    @Id
-    @Column(name = "commentid") 
+    @Id    
     private long commentid;
-
-    @Column(name = "review")
     private String review;
 
 }

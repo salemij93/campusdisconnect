@@ -15,13 +15,10 @@ import edu.depaul.cdm.se452.group2.campusdisconnect.departments.Department;
 
 @Data
 @Entity
-@Table(name = "major")
 public class Major implements Serializable {
     @Id
-    @Column(name = "majorname")
     private String majorname;
 
-    @Column(name = "requiredCredit")
     private int requiredCredit;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Department.class)
