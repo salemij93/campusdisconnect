@@ -20,16 +20,12 @@ import lombok.*;
 
 @Data
 @Entity
-@Table(name = "academicprogress")
 public class Professor implements Serializable {
     @Id
-    @Column(name = "pid")
 	private Long pid;
     
-    @Column(name = "firstName")
     private String firstName;
     
-    @Column(name = "lastName")
     private String lastName;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Department.class)

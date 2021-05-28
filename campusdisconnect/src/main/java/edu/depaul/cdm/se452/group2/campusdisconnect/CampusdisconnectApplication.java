@@ -50,6 +50,7 @@ public class CampusdisconnectApplication {
 	
 	@Autowired
 	private TaskNoSQLRepository taskNoSQLRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(CampusdisconnectApplication.class, args);
 	}
@@ -246,6 +247,8 @@ public class CampusdisconnectApplication {
 				scholarship.setStudentId(2468);
 				scholarship.setScholarshipAmount(1000);
 				scholarshipRepository.save(scholarship);
+				
+				
 			
 				
 

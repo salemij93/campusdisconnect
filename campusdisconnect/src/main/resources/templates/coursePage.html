@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Class Page</title>
+</head>
+<body>
+<h2>Manage my Classes</h2><br>
+<TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+   <label>Student ID:</label>
+   <label id = "id" ></label>
+   <script type="text/javascript">
+       function processUser()
+       {
+         var parameters = location.search.substring(1).split("&");
+         var temp = parameters[0].split("=");
+         var l = unescape(temp[1]);
+         document.getElementById('id').innerHTML = l;
+         console.log(l);
+       }
+       processUser()
+    </script>
+    <TR>
+       <TH COLSPAN="2"><BR><H3>Course List</H3>
+       </TH>
+    </TR>
+    <TR>
+       <TH>Course ID</TH>
+       <TH>Course Name</TH>
+    </TR>
+    <TR ALIGN="CENTER" >
+       <TD hello ></TD>
+       <TD hello></TD>
+       
+    </TR>
+ </TABLE>
+
+<form action="#" th:action="@{/courses}" th:object="${courses}" method="post">
+	<br></br> 
+	<label>Add Class </label>
+	<input type="text" name="courseid" id="cid" placeholder="Enter course id">    
+    <input type="submit" value = "Add"onclick="myFunctionAdd()">       
+    <br><br> 
+	<script>
+	function myFunctionAdd() {
+  	confirm("You have are about the this course");
+	}
+	</script>
+
+	 
+	<label>Drop Class </label>
+	<input type="text" name="courseid" id="cid" placeholder="Enter course id">
+	<input type="submit" value = "Drop" onclick="myFunctionDrop()">  
+	<script>
+	function myFunctionDrop() {
+  	confirm("You are about to drop this course");
+	}
+	</script>
+
+	<br><br> 
+	<label>Class Comments </label>
+	<input type="text" name="courseComments" id="cc" placeholder="Enter course id">
+ 
+	<input type="submit" value = "find">  
+
+
+
+</form>
+</body>
+</html>

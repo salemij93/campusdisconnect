@@ -15,10 +15,10 @@ public class FinancialAid implements Serializable {
     @Id
     private long financialaidid;
 
-    @Column( name = "aid_name")
+    
     private String financialAidDescription;
 
-    @Column( name = "aid_amount")
+   
     private int aidAmount;
 
     @Column (name = "student_id")
