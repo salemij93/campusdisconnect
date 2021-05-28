@@ -1,7 +1,7 @@
 package edu.depaul.cdm.se452.group2.campusdisconnect;
 
-import edu.depaul.cdm.se452.group2.campusdisconnect.students.Student;
-import edu.depaul.cdm.se452.group2.campusdisconnect.students.StudentRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.student.Student;
+import edu.depaul.cdm.se452.group2.campusdisconnect.student.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
