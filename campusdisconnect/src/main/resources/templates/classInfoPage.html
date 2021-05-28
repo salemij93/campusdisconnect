@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Class Info Page</title>
+</head>
+<body>
+<h2>Class Information Page</h2><br>
+<TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+   <label>Student ID:</label>
+   <label id = "id" ></label>
+   <script type="text/javascript">
+       function processUser()
+       {
+         var parameters = location.search.substring(1).split("&");
+         var temp = parameters[0].split("=");
+         var l = unescape(temp[1]);
+         document.getElementById('id').innerHTML = l;
+         console.log(l);
+       }
+       processUser()
+    </script>
+    <TR>
+       <TH COLSPAN="7"><BR><H3>Class Information</H3>
+       </TH>
+    </TR>
+    <TR>
+       <TH>Course ID</TH>
+       <TH>Course Name</TH>
+       <TH>Start Time</TH>
+       <TH>End Time</TH>
+       <TH>Credits Earned</TH>
+       <TH>Year</TH>
+       <TH>Quarter</TH>
+    </TR>
+    <TR ALIGN="CENTER" >
+       <TD ${courseid} ></TD>
+       <TD ${coursName} ></TD>
+       <TD ${StartTime} ></TD>
+       <TD ${EndTime} ></TD>
+       <TD ${credits} ></TD>
+       <TD ${year} ></TD>
+       <TD ${quarter} ></TD>
+       
+    </TR>
+ </TABLE>
+
+</body>
+</html>
