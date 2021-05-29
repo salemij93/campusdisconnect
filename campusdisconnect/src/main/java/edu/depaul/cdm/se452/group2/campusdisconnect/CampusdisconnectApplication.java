@@ -59,6 +59,9 @@ public class CampusdisconnectApplication {
 
     @Autowired
     private TaskNoSQLRepository taskNoSQLRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CampusdisconnectApplication.class, args);
@@ -120,6 +123,10 @@ public class CampusdisconnectApplication {
 				nursing.setRequiredCredit(140);
 				MajorRepository.save(nursing);
 
+
+				String username = "user";
+				Long id = userRepository.getDisconnectUserByStudentId(username).getId();
+				
 				//Insert Course
 				Course csc421 = new Course();
 				csc421.setCourseName("Algorithm");
@@ -135,7 +142,7 @@ public class CampusdisconnectApplication {
 				csc421NoSQL.setCourseid(421);
 				csc421NoSQL.setEnrolledcapacity(40);
 				csc421NoSQL.setWaitlistCapacity(20);
-				csc421NoSQL.getEnrolledlist().add((long) 2468);
+				csc421NoSQL.getEnrolledlist().add( id);
 				courseNoSQLRepository.save(csc421NoSQL);
 
 				Course csc435 = new Course();
@@ -152,7 +159,7 @@ public class CampusdisconnectApplication {
 				csc435NoSQL.setCourseid(435);
 				csc435NoSQL.setEnrolledcapacity(40);
 				csc435NoSQL.setWaitlistCapacity(20);
-				csc435NoSQL.getEnrolledlist().add((long) 2468);
+				csc435NoSQL.getEnrolledlist().add( id);
 				courseNoSQLRepository.save(csc435NoSQL);
 
 				Course csc432 = new Course();
@@ -169,7 +176,7 @@ public class CampusdisconnectApplication {
 				csc432NoSQL.setCourseid(432);
 				csc432NoSQL.setEnrolledcapacity(40);
 				csc432NoSQL.setWaitlistCapacity(20);
-				csc432NoSQL.getEnrolledlist().add((long) 2468);
+				csc432NoSQL.getEnrolledlist().add( id);
 				courseNoSQLRepository.save(csc432NoSQL);
 
 				Course ssc407 = new Course();
@@ -186,7 +193,7 @@ public class CampusdisconnectApplication {
 				ssc407NoSQL.setCourseid(407);
 				ssc407NoSQL.setEnrolledcapacity(40);
 				ssc407NoSQL.setWaitlistCapacity(20);
-				ssc407NoSQL.getEnrolledlist().add((long) 2468);
+				ssc407NoSQL.getEnrolledlist().add( id);
 				courseNoSQLRepository.save(ssc407NoSQL);
 
 				Course ssc428 = new Course();
@@ -203,7 +210,7 @@ public class CampusdisconnectApplication {
 				ssc428NoSQL .setCourseid(407);
 				ssc428NoSQL .setEnrolledcapacity(40);
 				ssc428NoSQL .setWaitlistCapacity(20);
-				ssc428NoSQL .getEnrolledlist().add((long) 2468);
+				ssc428NoSQL .getEnrolledlist().add( id);
 				courseNoSQLRepository.save(ssc428NoSQL);
 
 
@@ -224,7 +231,7 @@ public class CampusdisconnectApplication {
 				acct300NoSQL.setCourseid(300);
 				acct300NoSQL.setEnrolledcapacity(40);
 				acct300NoSQL.setWaitlistCapacity(20);
-				acct300NoSQL.getEnrolledlist().add((long) 2468);
+				acct300NoSQL.getEnrolledlist().add( id);
 				courseNoSQLRepository.save(acct300NoSQL);
 				
 				Course acct301 = new Course();
@@ -241,7 +248,7 @@ public class CampusdisconnectApplication {
 				acct301NoSQL.setCourseid(301);
 				acct301NoSQL.setEnrolledcapacity(40);
 				acct301NoSQL.setWaitlistCapacity(20);
-				acct301NoSQL.getEnrolledlist().add((long) 2468);
+				acct301NoSQL.getEnrolledlist().add( id);
 				courseNoSQLRepository.save(acct301NoSQL);
 
 				Course nursing100 = new Course();
@@ -258,7 +265,7 @@ public class CampusdisconnectApplication {
 				nursing100NoSQL.setCourseid(100);
 				nursing100NoSQL.setEnrolledcapacity(60);
 				nursing100NoSQL.setWaitlistCapacity(30);
-				nursing100NoSQL.getEnrolledlist().add((long) 2468);
+				nursing100NoSQL.getEnrolledlist().add( id);
 				courseNoSQLRepository.save(nursing100NoSQL);
 
 				Course nursing130 = new Course();
@@ -275,7 +282,7 @@ public class CampusdisconnectApplication {
 				nursing130NoSQL.setCourseid(130);
 				nursing130NoSQL.setEnrolledcapacity(60);
 				nursing130NoSQL.setWaitlistCapacity(30);
-				nursing130NoSQL.getEnrolledlist().add((long) 2468);
+				nursing130NoSQL.getEnrolledlist().add( id);
 				courseNoSQLRepository.save(nursing130NoSQL);
 				
 			
@@ -294,7 +301,7 @@ public class CampusdisconnectApplication {
 				CFA200NoSQL.setCourseid(200);
 				CFA200NoSQL.setEnrolledcapacity(60);
 				CFA200NoSQL.setWaitlistCapacity(30);
-				CFA200NoSQL.getEnrolledlist().add((long) 2468);
+				CFA200NoSQL.getEnrolledlist().add( id);
 				courseNoSQLRepository.save(CFA200NoSQL);
 
 				Course CFA227= new Course();
@@ -311,7 +318,7 @@ public class CampusdisconnectApplication {
 				CFA227NoSQL.setCourseid(227);
 				CFA227NoSQL.setEnrolledcapacity(60);
 				CFA227NoSQL.setWaitlistCapacity(30);
-				CFA227NoSQL.getEnrolledlist().add((long) 2468);
+				CFA227NoSQL.getEnrolledlist().add( id);
 				courseNoSQLRepository.save(CFA227NoSQL);
 
 				//Insert Tuition
@@ -342,46 +349,66 @@ public class CampusdisconnectApplication {
 
 
 				//Insert Student
+				String username2 = "user2";
+				//Insert Student
+				Long studentid = userRepository.getDisconnectUserByStudentId(username2).getId();
 				Student student1 = new Student();
 				StudentNoSQL student1NoSQL = new StudentNoSQL();
+				student1.setStudentid(studentid);
 				student1.setFirstName("Jack");
 				student1.setLastName("Michael");
 				student1.setMajor("Nursing");
-				student1.setStudentid(13579);
+				student1.setStudentuserId(username2);
 				student1.setEmail("jackzeng@depaul.edu");
 				student1.setAddress("14 Irvine blvd,Irvine");
 				student1.setCredit(20);
-				
 
-				student1NoSQL.setStudentid(13579);
-				
+
+				student1NoSQL.setStudentid(studentid);
+
 				studentRepository.save(student1);
 				studentNoSQLRepository.save(student1NoSQL);
 
 
+				
 				Student student2 = new Student();
 				StudentNoSQL student2NoSQL = new StudentNoSQL();
-				student2NoSQL.setStudentid(2468);
+				student2NoSQL.setStudentid(id);
 				student2.setFirstName("Joe");
 				student2.setLastName("May");
 				student2.setMajor("Computer Science");
-				student2.setStudentid(2468);
+				student2.setStudentid(id);
+				student2.setStudentuserId(username);
 				student2.setEmail("joemay@depaul.edu");
 				student2.setAddress("17 Montain blvd,Sacramento");
 				student2.setCredit(90);
 
 				student2NoSQL.getCurrentRegistrated().add("432");
 				student2NoSQL.getCurrentRegistrated().add("435");
-	
+				student2NoSQL.getCurrentRegistrated().add("421");
 				studentRepository.save(student2);
 				studentNoSQLRepository.save(student2NoSQL);
 
+
+				String admin = "admin";
+
+				Long adminid = userRepository.getDisconnectUserByStudentId(admin).getId();
 				Student student3 = new Student();
-				Student student4 = new Student();
-				Student student5 = new Student();
+				StudentNoSQL student3NoSQL = new StudentNoSQL();
+				student3NoSQL.setStudentid(adminid);
+				student3.setFirstName("Jess");
+				student3.setLastName("Wilson");
+				student3.setMajor("Math");
+				student3.setStudentid(adminid);
+				student3.setStudentuserId(admin);
+				student3.setEmail("jwils@depaul.edu");
+				student3.setAddress("1000 Montain blvd,Sacramento");
+				student3.setCredit(50);
+				studentRepository.save(student3);
+				studentNoSQLRepository.save(student3NoSQL);
 				
 				TaskNoSQL task1NoSQL = new TaskNoSQL();
-				task1NoSQL.setSid(2468);
+				task1NoSQL.setSid(studentid);
 				task1NoSQL.setTaskid(9);
 				task1NoSQL.getTaskList().add("Pay tuition");
 				task1NoSQL.getTaskList().add("Pay more");
@@ -389,13 +416,13 @@ public class CampusdisconnectApplication {
 
 
 				TaskNoSQL task2NoSQL = new TaskNoSQL();
-				task2NoSQL.setSid(13579);
+				task2NoSQL.setSid(id);
 				task2NoSQL.getTaskList().add("Register class");
 				taskNoSQLRepository.save(task2NoSQL);
 
 				// insert ScholarShip
 				Scholarship scholarship = new Scholarship();
-				scholarship.setStudentId(2468);
+				scholarship.setStudentId(studentid);
 				scholarship.setScholarshipAmount(1000);
 				scholarshipRepository.save(scholarship);
 				
