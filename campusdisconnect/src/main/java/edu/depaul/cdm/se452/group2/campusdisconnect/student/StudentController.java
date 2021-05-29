@@ -2,6 +2,8 @@ package edu.depaul.cdm.se452.group2.campusdisconnect.student;
 
 import java.util.*;
 
+import edu.depaul.cdm.se452.group2.campusdisconnect.DisconnectUserUtil;
+import edu.depaul.cdm.se452.group2.campusdisconnect.task.TaskNoSQL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,8 +57,10 @@ class StudentController {
 
   @CrossOrigin(origins = "http://localhost:8080")
   @GetMapping("/info")
-  public String getStudentInfo(@RequestParam Long id, Model model) {
-    Student student = studentrepository.findBystudentid(id);
+  public String getStudentInfo(Model model) {
+    Long disconnectUserId = DisconnectUserUtil.getDisconnectUserId();
+    String username = DisconnectUserUtil.getDisconnectUsername();
+    Student student = studentrepository.findBystudentid(disconnectUserId);
     // AcademicIntegrityNoSQL studentIntegrity = academicIntegrityNoSQLrepository.findBysid(id);
     // Set<String> violationListSet = studentIntegrity.getViloationList();
     int violation = 0;
@@ -64,6 +68,7 @@ class StudentController {
     //   violation = violationListSet.size();
     // }
     model.addAttribute("studentid", student.getStudentid());
+    model.addAttribute("studentuserId", username);
     model.addAttribute("firstname", student.getFirstName());
     model.addAttribute("lastname", student.getLastName());
     model.addAttribute("email", student.getEmail());
@@ -173,10 +178,14 @@ class StudentController {
 
   @CrossOrigin(origins = "http://localhost:8080") 
   @GetMapping("/mytuition")
-  public String currentTuition(@RequestParam Long id, Model model) {
-    StudentNoSQL studentNoSQL = studentNoSQLrepository.findBystudentid(id);
+  public String currentTuition(Model model) {
+
+    Long disconnectUserId = DisconnectUserUtil.getDisconnectUserId();
+
+
+    StudentNoSQL studentNoSQL = Optional.ofNullable(studentNoSQLrepository.findBystudentid(disconnectUserId)).orElse(new StudentNoSQL());
     int tuition = 0;
-    int scholarship = scholarshipRepository.findBystudentId(id).getScholarshipAmount();
+    int scholarship = Optional.ofNullable(scholarshipRepository.findBystudentId(disconnectUserId)).map(id -> id.getScholarshipAmount()).orElse(0);
     Set<String> currentEnroll = studentNoSQL.getCurrentRegistrated();
     for(String cid : currentEnroll){
       Course course = CourseRepository.findBycourseid(Long.valueOf(cid));

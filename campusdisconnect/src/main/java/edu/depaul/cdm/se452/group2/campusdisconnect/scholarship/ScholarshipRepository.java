@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ScholarshipRepository extends JpaRepository<Scholarship, Long>  {
-    public Scholarship findBystudentId(long id);
+     Scholarship findBystudentId(long id);
 }

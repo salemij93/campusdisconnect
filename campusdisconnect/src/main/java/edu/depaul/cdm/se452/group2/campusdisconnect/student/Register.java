@@ -1,19 +1,13 @@
 package edu.depaul.cdm.se452.group2.campusdisconnect.student;
-import java.io.Serializable;
 
-import lombok.*;
-import javax.persistence.*;
-import javax.persistence.Id;
-
+import lombok.Data;
 
 @Data
-@Entity
-public class Student implements Serializable {
-
-    @Id
-    private long studentid;
+public class Register {
 
     private String studentuserId;
+
+    private String password;
 
     private String major;
 
@@ -24,10 +18,4 @@ public class Student implements Serializable {
     private String lastName;
 
     private String address;
-
-    private int credit;
-
-   
-
-
 }

@@ -10,17 +10,7 @@
 <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
    <label>Student ID:</label>
    <label id = "id" ></label>
-   <script type="text/javascript">
-       function processUser()
-       {
-         var parameters = location.search.substring(1).split("&");
-         var temp = parameters[0].split("=");
-         var l = unescape(temp[1]);
-         document.getElementById('id').innerHTML = l;
-         console.log(l);
-       }
-       processUser()
-    </script>
+    <span th:text="${id}"></span>
     <TR>
        <TH COLSPAN="2"><BR><H3>Course List</H3>
        </TH>
@@ -44,7 +34,7 @@
     <br><br> 
 	<script>
 	function myFunctionAdd() {
-  	confirm("You have are about the this course");
+  	confirm("You are about to add this course");
 	}
 	</script>
 
