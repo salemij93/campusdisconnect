@@ -3,7 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-
+import java.util.Date;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,6 +54,7 @@ public class CourseController {
         model.addAttribute("curList", curList);
         model.addAttribute("nosqlList", nosqlList);
         model.addAttribute("allCourse", allCourse);
+        model.addAttribute("sid", id);
 
     	
     return "coursePage";
@@ -67,15 +68,20 @@ public class CourseController {
     public String showComments(@RequestParam Long cid, Model model){
         List<CourseComment> comments = courseNoSQLRepository.findBycourseid(cid).getComments();
         model.addAttribute("comments", comments);
+        model.addAttribute("cid", cid);
         return "commentPage";
     }
     @PostMapping("/comments/create")
     public String createComments(@RequestParam Long cid, Model model, String content){
-        List<CourseComment> comments = courseNoSQLRepository.findBycourseid(cid).getComments();
+        CourseNoSQL cur = courseNoSQLRepository.findBycourseid(cid);
+        List<CourseComment> comments = cur.getComments();
         CourseComment new_comment = new CourseComment();
         new_comment.setReview(content);
+        new_comment.setDate(new Date());
         comments.add(new_comment);
+        courseNoSQLRepository.save(cur);
         model.addAttribute("comments", comments);
+        model.addAttribute("cid", cid);
         return "commentPage";
     }
 

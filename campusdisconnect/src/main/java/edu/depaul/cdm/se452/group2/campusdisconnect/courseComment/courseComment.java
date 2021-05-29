@@ -14,7 +14,7 @@ public class CourseComment implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long commentid; 
-
+    private Date date;
     private String review;
 
 }

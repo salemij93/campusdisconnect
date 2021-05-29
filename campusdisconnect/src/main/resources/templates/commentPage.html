@@ -9,9 +9,9 @@
 <h2>Class Comments</h2><br>
 <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
    <label>Course ID:</label>
-   <label id = "id" ></label>
+   <label id = "id" th:text = "${cid}"></label>
     <TR>
-       <TH COLSPAN="2"><BR><H3>Course List</H3>
+       <TH COLSPAN="2"><BR><H3>Comments List</H3>
        </TH>
     </TR>
     <TR>
@@ -19,13 +19,18 @@
        <TH>Comment</TH>
        
     </TR>
-    <TR ALIGN="CENTER" >
-       <TD>Temp Date </TD>
-       <TD >This is a temperary review</TD>
-       
+    <TR ALIGN="CENTER" th:each = "com : ${comments}">
+       <TD th:text="${com.date}"></TD>
+       <TD th:text="${com.review}"></TD>
     </TR>
  </TABLE>
 
+ <form th:action="@{/course/comments/create}" method="Post">
+    <input type = "hidden" th:name = "cid" id = "cid" th:value = ${cid}>
+    
+    <input type = "text" th:name = "content">
+    <input type = "submit" value="Submit">
+ </form>
 
 </body>
 </html>
