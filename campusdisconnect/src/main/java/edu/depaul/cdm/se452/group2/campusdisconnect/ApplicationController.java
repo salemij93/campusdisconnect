@@ -40,6 +40,11 @@ class ApplicationController {
         return "homepage";
     }
 
+    @GetMapping("/")
+    public String start() {
+        return "homepage";
+    }
+
 
     @GetMapping("/register")
     public String getStudentRegistrationPage(Model model) {
