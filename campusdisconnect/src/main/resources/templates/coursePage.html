@@ -7,55 +7,102 @@
 </head>
 <body>
 <h2>Manage my Classes</h2><br>
-<TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+<TABLE BORDER="6"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
    <label>Student ID:</label>
    <label id = "id" ></label>
     <span th:text="${id}"></span>
     <TR>
-       <TH COLSPAN="2"><BR><H3>Course List</H3>
+       <TH COLSPAN="7"><BR><H3>Registered Courses</H3>
        </TH>
     </TR>
     <TR>
-       <TH>Course ID</TH>
+      <TH>Number</TH>
        <TH>Course Name</TH>
+       <TH>Course ID</TH>
+       <TH>Start Time</TH>
+       <TH>End Time</TH>
+       <TH>Option</TH>
+       <TH>Comment</TH>
+
+   
+
     </TR>
-    <TR ALIGN="CENTER" >
-       <TD hello ></TD>
-       <TD hello></TD>
-       
-    </TR>
+    <TR ALIGN="CENTER" th:each="t,iter : ${curList}" >
+      <TD th:text = ${iter.index+1}></TD>
+      <TD th:text="${t.courseName}"></TD>
+      <TD th:text="${t.courseid}" id = "dcid"></TD>
+      <TD th:text="${t.StartTime}"></TD>
+      <TD th:text="${t.EndTime}"></TD>
+      <TD>
+      <form th:action="@{/student/dropCourse}" method="Post">
+      <input type = "hidden" th:name = "id" th:value = ${sid}>
+          <input type = "hidden" th:name = "cid" th:value = ${t.courseid}> 
+          
+         <input type="submit" value="Drop">
+      </script>
+      </form>
+
+      </TD>
+
+      <TD>
+         <form th:action="@{/course/comments/all}" method="Get">
+             <input type = "hidden" th:name = "cid" th:value = ${t.courseid}> 
+             
+            <input type="submit" value="Reviews">
+         </script>
+         </form>
+   
+         </TD>
+
+   </TR>
  </TABLE>
 
-<form action="#" th:action="@{/courses}" th:object="${courses}" method="post">
-	<br></br> 
-	<label>Add Class </label>
-	<input type="text" name="courseid" id="cid" placeholder="Enter course id">    
-    <input type="submit" value = "Add"onclick="myFunctionAdd()">       
-    <br><br> 
-	<script>
-	function myFunctionAdd() {
-  	confirm("You are about to add this course");
-	}
-	</script>
+<br></br>
 
-	 
-	<label>Drop Class </label>
-	<input type="text" name="courseid" id="cid" placeholder="Enter course id">
-	<input type="submit" value = "Drop" onclick="myFunctionDrop()">  
-	<script>
-	function myFunctionDrop() {
-  	confirm("You are about to drop this course");
-	}
-	</script>
+<Table BORDER="6"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
 
-	<br><br> 
-	<label>Class Comments </label>
-	<input type="text" name="courseComments" id="cc" placeholder="Enter course id">
- 
-	<input type="submit" value = "find">  
+   <TR>
+      <TH COLSPAN="6"><BR><H3>Courses Available</H3>
+      </TH>
+   </TR>
+   <TR>
+      <TH>Course Name</TH>
+      <TH>Course ID</TH>
+      <TH>Start Time</TH>
+      <TH>End Time</TH>
+      <TH>Option</TH>
+      <TH>Comment</TH>
+
+   </TR>
+   <TR ALIGN="CENTER" th:each="t, iter : ${allCourse}" >
+
+   <TD th:text="${t.courseName}"></TD>
+   <TD th:text="${t.courseid}" id = "cid"></TD>
+   <TD th:text="${t.StartTime}"></TD>
+   <TD th:text="${t.EndTime}"></TD>
+   <TD>
+   <form th:action="@{/student/addCourse}" method="POST">
+   <input type = "hidden" th:name = "id" th:value = ${sid}>
+   <input type = "hidden" id = "addcid" th:name = "cid" th:value = ${t.courseid}> 
+      <input type="submit" value="Add">
+   
+   </form>
+
+   </TD>
+   <TD>
+      <form th:action="@{/course/comments/all}" method="Get">
+          <input type = "hidden" th:name = "cid" th:value = ${t.courseid}> 
+         <input type="submit" value="Reviews">
+      </script>
+      </form>
+
+      </TD>
+
+   </TR>
+</TABLE>
 
 
 
-</form>
+
 </body>
 </html>

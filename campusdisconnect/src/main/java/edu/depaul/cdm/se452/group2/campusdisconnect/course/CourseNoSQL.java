@@ -8,6 +8,8 @@ import org.springframework.data.annotation.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import edu.depaul.cdm.se452.group2.campusdisconnect.courseComment.CourseComment;
+
 
 @Data
 @AllArgsConstructor
@@ -24,7 +26,7 @@ public class CourseNoSQL implements Serializable {
 
     private List<Long> waitlist = new ArrayList<>(); // list of student ids in order who are waiting to be enrolled
     private List<Long> enrolledlist = new ArrayList<>(); //list of student ids in order who are enrolled
-    private List<String> comments = new ArrayList<>();
+    private List<CourseComment> comments = new ArrayList<>();
     
 
 

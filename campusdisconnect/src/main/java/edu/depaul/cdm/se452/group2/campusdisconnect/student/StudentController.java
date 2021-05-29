@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.depaul.cdm.se452.group2.campusdisconnect.academic.integrity.AcademicIntegrityNoSQLrepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.course.Course;
@@ -81,7 +82,7 @@ class StudentController {
   }
 
   @CrossOrigin(origins = "http://localhost:8080")
-  @PutMapping("/update/{id}")
+  @PostMapping("/update/{id}")
   public void updateStudentInfo(@RequestBody Student newStudent, @PathVariable Long id) {
     studentrepository.save(newStudent);
   }   
@@ -89,13 +90,15 @@ class StudentController {
 
   //dropcourse and enroll first student on waitlist
   @CrossOrigin(origins = "http://localhost:8080") 
-  @DeleteMapping("/dropCourse/{id}/{cid}")
-  public void dropCourse(@PathVariable Long id, @PathVariable String cid) {
+  @PostMapping("/dropCourse")
+  public String dropCourse(@RequestParam Long id, @RequestParam String cid, RedirectAttributes redirectAttributes) {
+    
     StudentNoSQL studentNoSQL = studentNoSQLrepository.findBystudentid(id);
     if(studentNoSQL.getCurrentRegistrated().contains(cid)){
         studentNoSQL.getCurrentRegistrated().remove(cid);
     }else{
-      return;
+      redirectAttributes.addAttribute("id", id);
+      return "redirect:/course/info";
     }
     CourseNoSQL curCourse = CourseNoSQLRepository.findBycourseid(Long.valueOf(cid));
     int EnrollmentCapacity = curCourse.getEnrolledcapacity();
@@ -113,16 +116,18 @@ class StudentController {
     }
     CourseNoSQLRepository.save(curCourse);
     studentNoSQLrepository.save(studentNoSQL);
-    
+    redirectAttributes.addAttribute("id", id);
+      return "redirect:/course/info";
   }
 
   //addcourse
   @CrossOrigin(origins = "http://localhost:8080") 
-  @PutMapping("/addCourse/{id}/{cid}")
-  public void addCourse(@PathVariable Long id, @PathVariable String cid) {
+  @PostMapping("/addCourse")
+  public String addCourse(@RequestParam Long id, @RequestParam String cid, RedirectAttributes redirectAttributes) {
     StudentNoSQL studentNoSQL = studentNoSQLrepository.findBystudentid(id);
     if(studentNoSQL.getCurrentRegistrated().contains(cid)){
-      return;
+      redirectAttributes.addAttribute("id", id);
+      return "redirect:/course/info";
     }
     CourseNoSQL courseNoSQL = CourseNoSQLRepository.findBycourseid(Long.valueOf(cid));
     int EnrollmentCapacity = courseNoSQL.getEnrolledcapacity();
@@ -133,12 +138,14 @@ class StudentController {
       courseNoSQL.getEnrolledlist().add(id);
       CourseNoSQLRepository.save(courseNoSQL);
     }
+    redirectAttributes.addAttribute("id", id);
+      return "redirect:/course/info";
   }
 
   //add to waitlist
   @CrossOrigin(origins = "http://localhost:8080") 
-  @PutMapping("/waitlistCourse/{id}/{cid}")
-  public String waitlistCourse(@PathVariable Long id, @PathVariable String cid) {
+  @PostMapping("/waitlistCourse")
+  public String waitlistCourse(@RequestParam Long id, @RequestParam String cid) {
     StudentNoSQL studentNoSQL = studentNoSQLrepository.findBystudentid(id);
     if(studentNoSQL.getCurrentWaitlist().contains(cid)){
       return "already waitlisted";
@@ -160,8 +167,8 @@ class StudentController {
 
   // drop from waitlist
   @CrossOrigin(origins = "http://localhost:8080") 
-  @PutMapping("/unwaitlistCourse/{id}/{cid}")
-  public void unwaitlistCourse(@PathVariable Long id, @PathVariable String cid) {
+  @PutMapping("/unwaitlistCourse")
+  public void unwaitlistCourse(@RequestParam Long id, @RequestParam String cid) {
     StudentNoSQL studentNoSQL = studentNoSQLrepository.findBystudentid(id);
     if(!studentNoSQL.getCurrentWaitlist().contains(cid)){
       return;

@@ -10,34 +10,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/course")
-public class CommentController {
+import java.util.List;
+
+@Controller
+public class commentController {
 
     @Autowired
     CommentRepository commentRepository;
-
-    @Autowired
-    CommentNoSQLRepository commentNoSQLRepository;
 
     @GetMapping
     public void showAll() {
         commentRepository.findAll();
     }
-
-    @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping("/create")
-    public void newCourse(@RequestBody CourseComment comment) {
-
-        CommentNoSQL newcommentNoSQL = new CommentNoSQL();
-        newcommentNoSQL.setCommentid(comment.getCommentid());
-        commentNoSQLRepository.save(newcommentNoSQL);
-        commentRepository.save(comment);
-        
-    }
-
-
-
-
 
 }

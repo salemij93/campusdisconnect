@@ -11,9 +11,9 @@ import javax.persistence.Id;
 public class CourseComment implements Serializable{
  
     @Id
-    private long commentid;
-
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long commentid; 
+    private Date date;
     private String review;
 
 }
