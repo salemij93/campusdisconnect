@@ -2,6 +2,8 @@ package edu.depaul.cdm.se452.group2.campusdisconnect;
 
 import edu.depaul.cdm.se452.group2.campusdisconnect.student.Register;
 import edu.depaul.cdm.se452.group2.campusdisconnect.student.Student;
+import edu.depaul.cdm.se452.group2.campusdisconnect.student.StudentNoSQL;
+import edu.depaul.cdm.se452.group2.campusdisconnect.student.StudentNoSQLRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.student.StudentRepository;
 import edu.depaul.cdm.se452.group2.campusdisconnect.task.TaskNoSQL;
 import edu.depaul.cdm.se452.group2.campusdisconnect.user.DisconnectUser;
@@ -30,6 +32,9 @@ class ApplicationController {
 
     @Autowired
     private AuthorityRepository authorityRepository;
+
+    @Autowired
+    private StudentNoSQLRepository studentNoSQLRepository;
 
 
     @GetMapping("/login")
@@ -75,8 +80,11 @@ class ApplicationController {
         student.setAddress(registrationInformation.getAddress());
         student.setFirstName(registrationInformation.getFirstName());
         student.setLastName(registrationInformation.getLastName());
-
+        
+        StudentNoSQL studentNoSQL = new StudentNoSQL();
+        studentNoSQL.setStudentid(user.getId());
     studentrepository.save(student);
+    studentNoSQLRepository.save(studentNoSQL);
     return "homepage";
   }
 

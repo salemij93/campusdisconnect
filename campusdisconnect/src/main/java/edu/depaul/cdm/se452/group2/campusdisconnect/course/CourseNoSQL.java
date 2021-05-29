@@ -8,12 +8,11 @@ import org.springframework.data.annotation.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import edu.depaul.cdm.se452.group2.campusdisconnect.courseComment.CourseComment;
+import edu.depaul.cdm.se452.group2.campusdisconnect.course.*;
+import edu.depaul.cdm.se452.group2.campusdisconnect.course.comment.CourseComment;
 
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Document(collection = "courseInfo")
 public class CourseNoSQL implements Serializable {
 

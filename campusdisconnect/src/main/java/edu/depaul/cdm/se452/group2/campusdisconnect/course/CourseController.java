@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.group2.campusdisconnect.courses;
+package edu.depaul.cdm.se452.group2.campusdisconnect.course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import edu.depaul.cdm.se452.group2.campusdisconnect.courseComment.CourseComment;
-import edu.depaul.cdm.se452.group2.campusdisconnect.students.StudentNoSQL;
-import edu.depaul.cdm.se452.group2.campusdisconnect.students.StudentNoSQLRepository;
+import edu.depaul.cdm.se452.group2.campusdisconnect.DisconnectUserUtil;
+import edu.depaul.cdm.se452.group2.campusdisconnect.course.*;
+import edu.depaul.cdm.se452.group2.campusdisconnect.course.comment.CourseComment;
+import edu.depaul.cdm.se452.group2.campusdisconnect.student.*;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +38,10 @@ public class CourseController {
 
     @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/info")
-    public String getCourseInfo(@RequestParam Long id, Model model) {
-        StudentNoSQL student =  studentNoSQLRepository.findBystudentid(id);
+    public String getCourseInfo(Model model) {
+        Long disconnectUserId = DisconnectUserUtil.getDisconnectUserId();
+        String username = DisconnectUserUtil.getDisconnectUsername();
+        StudentNoSQL student =  studentNoSQLRepository.findBystudentid(disconnectUserId);
         Set<String> curCourses = student.getCurrentRegistrated();
         List<Course> curList = new ArrayList<>();
         List<CourseNoSQL> nosqlList = new ArrayList<>();
@@ -54,7 +58,7 @@ public class CourseController {
         model.addAttribute("curList", curList);
         model.addAttribute("nosqlList", nosqlList);
         model.addAttribute("allCourse", allCourse);
-        model.addAttribute("sid", id);
+        model.addAttribute("sid", disconnectUserId);
 
     	
     return "coursePage";
