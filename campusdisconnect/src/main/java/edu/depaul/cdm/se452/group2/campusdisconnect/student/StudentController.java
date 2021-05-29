@@ -74,8 +74,11 @@ class StudentController {
 
   @CrossOrigin(origins = "http://localhost:8080")
   @PutMapping("/update/{id}")
-  public void updateStudentInfo(@RequestBody Student newStudent, @PathVariable Long id) {
-    studentrepository.save(newStudent);
+  public String updateStudentInfo(@RequestBody Student newStudent, Model model) {
+    Long disconnectUserId = DisconnectUserUtil.getDisconnectUserId();
+    Student student = studentrepository.findBystudentid(disconnectUserId);
+    studentrepository.save(student);
+    return "student-profile";
   }   
 
 
