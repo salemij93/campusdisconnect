@@ -96,11 +96,11 @@ public class CampusdisconnectApplication {
 				ss.setRequiredCredit(160);
 				MajorRepository.save(ss);
 
-				Major accounting = new Major();
-				accounting.setMajorname("Accounting");
-				accounting.setDepartment(business);
-				accounting.setRequiredCredit(140);
-				MajorRepository.save(accounting);
+				Major acct = new Major();
+				acct.setMajorname("Accounting");
+				acct.setDepartment(business);
+				acct.setRequiredCredit(140);
+				MajorRepository.save(acct);
 
 				Major sculpture = new Major();
 				sculpture.setMajorname("Sculpture");
@@ -165,6 +165,148 @@ public class CampusdisconnectApplication {
 				csc432NoSQL.setWaitlistCapacity(20);
 				csc432NoSQL.getEnrolledlist().add((long) 2468);
 				courseNoSQLRepository.save(csc432NoSQL);
+
+				Course ssc407 = new Course();
+				ssc407.setCourseName("System Design");
+				ssc407.setCourseid(407);
+				ssc407.setCredits(4);
+				ssc407.setMajor(ss);
+				ssc407.setQuarter("spring");
+				ssc407.setYear(2021);
+				ssc407.setStartTime("9:00AM");
+				ssc407.setEndTime("11:00PM");
+				courseRepository.save(ssc407);
+				CourseNoSQL ssc407NoSQL = new CourseNoSQL();
+				ssc407NoSQL.setCourseid(407);
+				ssc407NoSQL.setEnrolledcapacity(40);
+				ssc407NoSQL.setWaitlistCapacity(20);
+				ssc407NoSQL.getEnrolledlist().add((long) 2468);
+				courseNoSQLRepository.save(ssc407NoSQL);
+
+				Course ssc428 = new Course();
+				ssc428.setCourseName("Android Development ");
+				ssc428.setCourseid(428);
+				ssc428.setCredits(4);
+				ssc428.setMajor(ss);
+				ssc428.setQuarter("Winter");
+				ssc428.setYear(2021);
+				ssc428.setStartTime("2:00AM");
+				ssc428.setEndTime("4:00PM");
+				courseRepository.save(ssc428);
+				CourseNoSQL  ssc428NoSQL = new CourseNoSQL();
+				ssc428NoSQL .setCourseid(407);
+				ssc428NoSQL .setEnrolledcapacity(40);
+				ssc428NoSQL .setWaitlistCapacity(20);
+				ssc428NoSQL .getEnrolledlist().add((long) 2468);
+				courseNoSQLRepository.save(ssc428NoSQL);
+
+
+
+
+				
+				Course acct300 = new Course();
+				acct300.setCourseName("Business Law");
+				acct300.setCourseid(300);
+				acct300.setCredits(4);
+				acct300.setMajor(acct);
+				acct300.setQuarter("spring");
+				acct300.setYear(2021);
+				acct300.setStartTime("11:00AM");
+				acct300.setEndTime("1:00PM");
+				courseRepository.save(acct300);
+				CourseNoSQL acct300NoSQL = new CourseNoSQL();
+				acct300NoSQL.setCourseid(300);
+				acct300NoSQL.setEnrolledcapacity(40);
+				acct300NoSQL.setWaitlistCapacity(20);
+				acct300NoSQL.getEnrolledlist().add((long) 2468);
+				courseNoSQLRepository.save(acct300NoSQL);
+				
+				Course acct301 = new Course();
+				acct301.setCourseName("Estate and Gift Taxation");
+				acct301.setCourseid(301);
+				acct301.setCredits(4);
+				acct301.setMajor(acct);
+				acct301.setQuarter("spring");
+				acct301.setYear(2021);
+				acct301.setStartTime("4:00pm");
+				acct301.setEndTime("6:00PM");
+				courseRepository.save(acct301);
+				CourseNoSQL acct301NoSQL = new CourseNoSQL();
+				acct301NoSQL.setCourseid(301);
+				acct301NoSQL.setEnrolledcapacity(40);
+				acct301NoSQL.setWaitlistCapacity(20);
+				acct301NoSQL.getEnrolledlist().add((long) 2468);
+				courseNoSQLRepository.save(acct301NoSQL);
+
+				Course nursing100 = new Course();
+				nursing100.setCourseName("Fundamental of Nursing");
+				nursing100.setCourseid(100);
+				nursing100.setCredits(4);
+				nursing100.setMajor(nursing);
+				nursing100.setQuarter("Winter");
+				nursing100.setYear(2021);
+				nursing100.setStartTime("6:00pm");
+				nursing100.setEndTime("8:00PM");
+				courseRepository.save(nursing100);
+				CourseNoSQL nursing100NoSQL = new CourseNoSQL();
+				nursing100NoSQL.setCourseid(100);
+				nursing100NoSQL.setEnrolledcapacity(60);
+				nursing100NoSQL.setWaitlistCapacity(30);
+				nursing100NoSQL.getEnrolledlist().add((long) 2468);
+				courseNoSQLRepository.save(nursing100NoSQL);
+
+				Course nursing130 = new Course();
+				nursing130.setCourseName("Mental Health Nursing");
+				nursing130.setCourseid(130);
+				nursing130.setCredits(4);
+				nursing130.setMajor(nursing);
+				nursing130.setQuarter("Fall");
+				nursing130.setYear(2021);
+				nursing130.setStartTime("4:00pm");
+				nursing130.setEndTime("6:30PM");
+				courseRepository.save(nursing130);
+				CourseNoSQL nursing130NoSQL = new CourseNoSQL();
+				nursing130NoSQL.setCourseid(130);
+				nursing130NoSQL.setEnrolledcapacity(60);
+				nursing130NoSQL.setWaitlistCapacity(30);
+				nursing130NoSQL.getEnrolledlist().add((long) 2468);
+				courseNoSQLRepository.save(nursing130NoSQL);
+				
+			
+
+				Course CFA200 = new Course();
+				CFA200.setCourseName("Foundation Sculpture");
+				CFA200.setCourseid(200);
+				CFA200.setCredits(4);
+				CFA200.setMajor(sculpture);
+				CFA200.setQuarter("Fall");
+				CFA200.setYear(2021);
+				CFA200.setStartTime("3:00pm");
+				CFA200.setEndTime("5:30PM");
+				courseRepository.save(CFA200);
+				CourseNoSQL CFA200NoSQL = new CourseNoSQL();
+				CFA200NoSQL.setCourseid(200);
+				CFA200NoSQL.setEnrolledcapacity(60);
+				CFA200NoSQL.setWaitlistCapacity(30);
+				CFA200NoSQL.getEnrolledlist().add((long) 2468);
+				courseNoSQLRepository.save(CFA200NoSQL);
+
+				Course CFA227= new Course();
+				CFA227.setCourseName("Sculpture Thesis Seminar");
+				CFA227.setCourseid(227);
+				CFA227.setCredits(4);
+				CFA227.setMajor(sculpture);
+				CFA227.setQuarter("Fall");
+				CFA227.setYear(2021);
+				CFA227.setStartTime("3:00pm");
+				CFA227.setEndTime("5:30PM");
+				courseRepository.save(CFA227);
+				CourseNoSQL CFA227NoSQL = new CourseNoSQL();
+				CFA227NoSQL.setCourseid(227);
+				CFA227NoSQL.setEnrolledcapacity(60);
+				CFA227NoSQL.setWaitlistCapacity(30);
+				CFA227NoSQL.getEnrolledlist().add((long) 2468);
+				courseNoSQLRepository.save(CFA227NoSQL);
 
 				//Insert Tuition
 				Tuition csT = new Tuition();
