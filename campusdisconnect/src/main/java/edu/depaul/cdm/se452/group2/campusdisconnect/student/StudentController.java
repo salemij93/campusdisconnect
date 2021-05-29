@@ -68,17 +68,14 @@ class StudentController {
     model.addAttribute("major", student.getMajor());
     model.addAttribute("address", student.getAddress());
     model.addAttribute("credits", student.getCredit());
-    model.addAttribute("violations", "No Violations");
+    model.addAttribute("violations", "No Violation");
     return "student-profile";
   }
 
   @CrossOrigin(origins = "http://localhost:8080")
   @PutMapping("/update/{id}")
-  public String updateStudentInfo(@RequestBody Student newStudent, Model model) {
-    Long disconnectUserId = DisconnectUserUtil.getDisconnectUserId();
-    Student student = studentrepository.findBystudentid(disconnectUserId);
-    studentrepository.save(student);
-    return "student-profile";
+  public void updateStudentInfo(@RequestBody Student newStudent, @PathVariable Long id) {
+    studentrepository.save(newStudent);
   }   
 
 

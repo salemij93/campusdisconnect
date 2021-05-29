@@ -41,10 +41,16 @@
                  First Name
                 </div>
                 <div class="col-3" th:text = ${firstname}>
-                  
+                    <span class="input-group-text" id="inputGroup-sizing-default"th:text = ${firstname} ></span>
                 </div>
-                <div class="col-6">
-                    <button type="button" class="btn btn-outline-info">Edit</button>
+                <div class="col-3">
+                    <form action="#" th:action="@{/update}" th:object="${student}" method="put">
+                        <div class="input-group mb-3">
+                            <input type="text" th:field="*{firstName}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <button type="submit" class="btn btn-outline-info">Change Name</button>
+                        </div>
+                    </form>
+                    
                 </div>
             </div>
 
