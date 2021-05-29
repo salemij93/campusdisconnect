@@ -11,8 +11,10 @@ import lombok.Data;
 @Entity
 public class CourseComment implements Serializable{
  
-    @Id    
-    private long commentid;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long commentid; 
+
     private String review;
 
 }

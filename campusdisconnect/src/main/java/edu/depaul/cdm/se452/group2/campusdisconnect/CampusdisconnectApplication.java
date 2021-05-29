@@ -122,8 +122,8 @@ public class CampusdisconnectApplication {
 				csc421.setMajor(cs);
 				csc421.setQuarter("spring");
 				csc421.setYear(2021);
-				csc421.setStartTime("9:00AM");
-				csc421.setEndTime("12:00PM");
+				csc421.setStartTime("1:00PM");
+				csc421.setEndTime("3:00PM");
 				courseRepository.save(csc421);
 				CourseNoSQL csc421NoSQL = new CourseNoSQL();
 				csc421NoSQL.setCourseid(421);
@@ -156,8 +156,8 @@ public class CampusdisconnectApplication {
 				csc432.setMajor(cs);
 				csc432.setQuarter("spring");
 				csc432.setYear(2021);
-				csc432.setStartTime("9:00AM");
-				csc432.setEndTime("12:00PM");
+				csc432.setStartTime("4:00AM");
+				csc432.setEndTime("6:00PM");
 				courseRepository.save(csc432);
 				CourseNoSQL csc432NoSQL = new CourseNoSQL();
 				csc432NoSQL.setCourseid(432);
@@ -224,7 +224,7 @@ public class CampusdisconnectApplication {
 
 				student2NoSQL.getCurrentRegistrated().add("432");
 				student2NoSQL.getCurrentRegistrated().add("435");
-				student2NoSQL.getCurrentRegistrated().add("421");
+	
 				studentRepository.save(student2);
 				studentNoSQLRepository.save(student2NoSQL);
 

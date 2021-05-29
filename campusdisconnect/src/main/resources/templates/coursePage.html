@@ -22,50 +22,137 @@
        processUser()
     </script>
     <TR>
-       <TH COLSPAN="2"><BR><H3>Course List</H3>
+       <TH COLSPAN="6"><BR><H3>Registered Courses</H3>
        </TH>
     </TR>
     <TR>
-       <TH>Course ID</TH>
+      <TH>Number</TH>
        <TH>Course Name</TH>
+       <TH>Course ID</TH>
+       <TH>Start Time</TH>
+       <TH>End Time</TH>
+       <TH>Option</TH>
+       <TH>Comment</TH>
+
+   
+
     </TR>
-    <TR ALIGN="CENTER" >
-       <TD hello ></TD>
-       <TD hello></TD>
-       
-    </TR>
+    <TR ALIGN="CENTER" th:each="t,iter : ${curList}" >
+      <TD th:text = ${iter.index+1}></TD>
+      <TD th:text="${t.courseName}"></TD>
+      <TD th:text="${t.courseid}" id = "dcid"></TD>
+      <TD th:text="${t.StartTime}"></TD>
+      <TD th:text="${t.EndTime}"></TD>
+      <TD>
+      <form th:action="@{/student/dropCourse}" method="Post">
+      <input type = "hidden" id = "curc" th:name = "id">
+         <script type="text/javascript">
+             function processdid()
+             {
+               document.getElementById('curc').value = document.getElementById('id').textContent;
+             }
+             processdid()
+          </script>
+          <input type = "hidden" id = "dropcid" th:name = "cid"> 
+          <script type="text/javascript">
+             function processdroping()
+             {
+             document.getElementById('dropcid').value = document.getElementById('dcid').textContent;
+             }
+             processdroping()
+          </script>
+         <input type="submit" value="Drop">
+      </script>
+      </form>
+
+      </TD>
+
+      <TD>
+         <form th:action="@{/}" method="Post">
+             <input type = "hidden" id = "rid" th:name = "cid"> 
+             <script type="text/javascript">
+                function processdroping()
+                {
+                document.getElementById('rid').value = document.getElementById('dcid').textContent;
+                }
+                processdroping()
+             </script>
+            <input type="submit" value="Reviews">
+         </script>
+         </form>
+   
+         </TD>
+
+   </TR>
  </TABLE>
 
-<form action="#" th:action="@{/courses}" th:object="${courses}" method="post">
-	<br></br> 
-	<label>Add Class </label>
-	<input type="text" name="courseid" id="cid" placeholder="Enter course id">    
-    <input type="submit" value = "Add"onclick="myFunctionAdd()">       
-    <br><br> 
-	<script>
-	function myFunctionAdd() {
-  	confirm("You have are about the this course");
-	}
-	</script>
+<br></br>
 
-	 
-	<label>Drop Class </label>
-	<input type="text" name="courseid" id="cid" placeholder="Enter course id">
-	<input type="submit" value = "Drop" onclick="myFunctionDrop()">  
-	<script>
-	function myFunctionDrop() {
-  	confirm("You are about to drop this course");
-	}
-	</script>
+<Table BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
 
-	<br><br> 
-	<label>Class Comments </label>
-	<input type="text" name="courseComments" id="cc" placeholder="Enter course id">
- 
-	<input type="submit" value = "find">  
+   <TR>
+      <TH COLSPAN="5"><BR><H3>Courses Available</H3>
+      </TH>
+   </TR>
+   <TR>
+      <TH>Course Name</TH>
+      <TH>Course ID</TH>
+      <TH>Start Time</TH>
+      <TH>End Time</TH>
+      <TH>Option</TH>
 
 
+   </TR>
+   <TR ALIGN="CENTER" th:each="t : ${allCourse}" >
 
-</form>
+   <TD th:text="${t.courseName}"></TD>
+   <TD th:text="${t.courseid}" id = "cid"></TD>
+   <TD th:text="${t.StartTime}"></TD>
+   <TD th:text="${t.EndTime}"></TD>
+   <TD>
+   <form th:action="@{/student/addCourse}" method="POST">
+   <input type = "hidden" id = "addid" th:name = "id">
+      <script type="text/javascript">
+            function processid()
+            {
+               document.getElementById('addid').value = document.getElementById('id').textContent;
+            }
+            processid()
+         </script>
+   <input type = "hidden" id = "addcid" th:name = "cid"> 
+   <script type="text/javascript">
+      function processAdding()
+      {
+      document.getElementById('addcid').value = document.getElementById('cid').textContent;
+      }
+      processAdding()
+   </script>
+      <input type="submit" value="Add">
+   
+   </form>
+
+   </TD>
+   <TD>
+      <form th:action="@{/}" method="Post">
+          <input type = "hidden" id = "rid" th:name = "cid"> 
+          <script type="text/javascript">
+             function processdroping()
+             {
+             document.getElementById('rid').value = document.getElementById('dcid').textContent;
+             }
+             processdroping()
+          </script>
+         <input type="submit" value="Reviews">
+      </script>
+      </form>
+
+      </TD>
+
+   </TR>
+</TABLE>
+
+
+
+
 </body>
 </html>
